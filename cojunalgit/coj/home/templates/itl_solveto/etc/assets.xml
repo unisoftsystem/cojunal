@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assets>
+	<scripts>
+		<file>js/jquery.easing.1.3.js</file>
+		<file>js/jquery.hoverex.js</file>
+		<file>js/owl.carousel.min.js</file>
+		<file>js/jquery.fancybox.pack.js</file>
+		<file>js/jquery.tooltipster.min.js</file>
+		<file>js/jquery.easy-pie-chart.js</file>
+		<file>js/itl_script.js</file>
+	</scripts>
+	
+	<stylesheets>
+		<file>fonts/font-awesome/css/font-awesome.min.css</file>
+		<file>css/owl.carousel.css</file>
+		<file>css/owl.theme.css</file>
+		<file>css/tooltipster.css</file>
+		<file>css/jquery.fancybox.css</file>
+		<file>css/steadysets.css</file>
+		<file>css/hoverex-all.css</file>
+		<file>css/linecon.css</file>
+		<file>css/vector-icons.css</file>
+		<file>http://fonts.googleapis.com/css?family=Open+Sans:400,600,700</file>
+		<file>css/itl_custom.css</file>
+	</stylesheets>
+	
+</assets>

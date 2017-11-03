@@ -1,0 +1,24 @@
+{
+    "remotePath": "/var/www/html/plataforma/beta",
+    "host": "45.33.14.204",
+    "username": "root",
+    "password": "Pr5dE14kFK2Z",
+    "port": 22,
+    "secure": false,
+    "protocol": "sftp",
+    "uploadOnSave": false,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "ignore": [
+        "\\.vscode",
+        "\\.git",
+        "\\.DS_Store"
+    ],
+    "generatedFiles": {
+        "uploadOnSave": false,
+        "extensionsToInclude": [],
+        "path": ""
+    }
+}

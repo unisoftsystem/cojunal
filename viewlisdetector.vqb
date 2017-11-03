@@ -1,0 +1,49 @@
+[Diagram properties]
+SQL=""SELECT "#13#10"  w.idWallet,"#13#10"  c.idCampaign,"#13#10"  c.name,"#13#10"  w.idNumber,"#13#10"  w.legalName,"#13#10"  w.capitalValue,"#13#10"  w.validThrough,"#13#10"  w.`type`,"#13#10"  ((((w.capitalValue * (select sysparams.feeRate from sysparams)) / 100) + (((w.capitalValue * (select sysparams.interestRate from sysparams)) / 100) * (select timestampdiff(MONTH, w.dAssigment, curdate())))) + w.capitalValue) AS valueAssigment,"#13#10"  (((((w.capitalValue * (select sysparams.feeRate from sysparams)) / 100) + (((w.capitalValue * (select sysparams.interestRate from sysparams)) / 100) * (select timestampdiff(MONTH, w.dAssigment, curdate())))) + w.capitalValue) - w.currentDebt) AS debt,"#13#10"  w.currentDebt,"#13#10"  ((w.capitalValue * (select sysparams.feeRate from sysparams)) / 100) AS feeValue,"#13#10"  w.dAssigment,"#13#10"  w.dUpdate,"#13#10"  s.idStatus,"#13#10"  s.description,"#13#10"  ((w.capitalValue * (select sysparams.interestRate from sysparams)) / 100) AS interestMonth,"#13#10"  (((w.capitalValue * (select sysparams.interestRate from sysparams)) / 100) * (select timestampdiff(MONTH, w.dAssigment, curdate()))) AS interest,"#13#10"  (SELECT (to_days(curdate()) - to_days(w.dUpdate)) AS FIELD_1) AS gestion"#13#10"FROM"#13#10"  wallets_has_campaigns whc"#13#10"  INNER JOIN wallets w ON (whc.idWallet = w.idWallet)"#13#10"  INNER JOIN campaigns c ON (c.idCampaign = whc.idCampaign)"#13#10"  INNER JOIN `status` s ON (s.idStatus = w.idStatus)"#13#10"""
+[Query 1: wallets_has_campaigns]
+Left=478
+Top=20
+Height=78
+Width=237
+[Query 1: status]
+Left=346
+Top=20
+Height=78
+Width=122
+[Query 1: campaigns]
+Left=189
+Top=20
+Height=129
+Width=147
+[Query 1: wallets]
+Left=50
+Top=20
+Height=129
+Width=129
+[Query 1: wallets_has_campaigns_idWallet-wallets_idWallet]
+PointX0=478
+PointY0=49
+PointX1=468
+PointY1=49
+PointX2=189
+PointY2=49
+PointX3=179
+PointY3=49
+[Query 1: wallets_has_campaigns_idCampaign-campaigns_idCampaign]
+PointX0=478
+PointY0=66
+PointX1=468
+PointY1=66
+PointX2=346
+PointY2=49
+PointX3=336
+PointY3=49
+[Query 1: wallets_idStatus-status_idStatus]
+PointX0=179
+PointY0=148
+PointX1=189
+PointY1=148
+PointX2=336
+PointY2=49
+PointX3=346
+PointY3=49

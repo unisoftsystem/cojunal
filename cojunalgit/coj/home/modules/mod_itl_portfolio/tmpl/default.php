@@ -1,0 +1,38 @@
+<?php
+/**
+ * @subpackage  mod_ts_team
+ * @copyright Copyright (C) 2013 - 2014 Themewinter. All rights reserved.
+ * @license   GNU General Public License version 2 or later; 
+ */
+
+// no direct access
+defined('_JEXEC') or die;
+
+?>
+<div id="itl-portfolio<?php echo $module->id; ?>" class="itl-portfolio <?php echo $params->get('moduleclass_sfx') ?>">
+    <div id="portfolio-wrap" class="portfolio-wrap">
+    <?php foreach ($data as $key => $value):  ?>
+            <div class="portfolio-item v1 l1" data-id="1925">
+                    <div class="he-wrap tpl2">
+                        <img src="<?php echo $value['img'] ?>" alt="<?php echo $value['title'] ?>" class="start_animation">
+
+                        <div class="overlay he-view">
+                            <div class="bg a0" data-animate="fadeIn">
+                                <div class="center-bar v1">
+                                    <div class="centered">
+                                        <a href="<?php echo $value['img'] ?>" class="btn-system a1 fancybox" data-animate="fadeInUp">View Large</a>
+                                        <a href="<?php echo $value['extlink'] ?>" class="btn-system second a2" data-animate="fadeInUp">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h3 class="title"><a href="<?php echo $value['extlink'] ?>"><?php echo $value['title'] ?></a></h3>
+                        <span class="categories"><?php echo $value['category'] ?></span>
+                    </div>
+            </div>
+    <?php endforeach ?>
+    </div>
+</div>

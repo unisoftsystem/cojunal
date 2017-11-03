@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>ITL Feature</name>
+    <author>ithemeslab</author>
+	<copyright>Copyright (C) 2014 - 2014 ithemeslab. All rights reserved.</copyright>
+	<creationDate>04 July 2014</creationDate>
+	<license>GNU General Public License version 2 or later</license>
+	<authorEmail>support@ithemeslab.com</authorEmail>
+	<authorUrl>www.ithemeslab.com</authorUrl>
+    <version>1.0.0</version>
+    <description>A simple module provided by ithemeslab which will display feature and service contents.</description>
+    <files>
+        <filename>mod_itl_feature.xml</filename>
+        <filename module="mod_itl_feature">mod_itl_feature.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/layout1.php</filename>
+        <filename>tmpl/layout2.php</filename>
+        <filename>tmpl/service.php</filename>
+        <filename>tmpl/layout1.php</filename>
+        <filename>tmpl/layout1.php</filename>
+        <filename>tmpl/service-page.php</filename>
+        <filename>tmpl/index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" label="Basic Module Config">
+                <field type="text" name="feature_icon" label="Icon Name" />
+                <field type="text" name="feature_title" label="Feature Title" />
+                <field name="feature_description" type="textarea" default="" label="Feature Decscription" description="" rows="5" cols="5" filter="raw"/>
+                <field type="text" name="read_more" label="Read More Link" description="Put your article link to show read more link" />
+            </fieldset>
+			<fieldset name="advanced">
+				<field name="layout" type="modulelayout" default="default" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC"  /> 
+				<field name="moduleclass_sfx" type="text" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+				<field name="module_cache" type="list" default="1" label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC">
+				  <option value="1">JGLOBAL_USE_GLOBAL</option>
+				  <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field name="cache" type="hidden" default="1" />
+				<field name="cache_time" type="text" default="900" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field name="cachemode" type="hidden" default="itemid">
+				 <option value="itemid"></option>
+			   </field>
+			</fieldset>
+        </fields>
+    </config>
+</extension>

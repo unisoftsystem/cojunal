@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="2.5"
+	client="site"
+	method="upgrade">
+	<name>itl-portfolio</name>
+	<author>iThemesLab</author>
+	<creationDate>Jan 2015</creationDate>
+	<copyright>Copyright (C) 2015 iThemesLab. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later;</license>
+	<authorEmail>ithemeslab@gmail.com</authorEmail>
+	<authorUrl>http://ithemeslab.com</authorUrl>
+	<version>1.0</version>
+	<description>Portfolio Module by iThemesLab</description>
+	<files>
+		<filename module="mod_itl_portfolio">mod_itl_portfolio.php</filename>
+		<folder>tmpl</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+
+				<!--Item 1-->
+				<field name="item1_spacer" type="spacer" label="Item 1" />
+				<field name="item1_img" type="media" label="Image" description="Upload item image" />
+				<field name="item1_title" type="text" label="Title" description="Give an item name" />
+				<field name="item1_category" type="text" label="Category" description="Give a category" />
+				<field name="item1_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item1_hr" type="spacer" hr="true" />
+
+				<!--Item 2-->
+				<field name="item2_spacer" type="spacer" label="Item 2" />
+				<field name="item2_img" type="media" label="Image" description="Upload item image" />
+				<field name="item2_title" type="text" label="Title" description="Give an item name" />
+				<field name="item2_category" type="text" label="Category" description="Give a category" />
+				<field name="item2_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item2_hr" type="spacer" hr="true" />
+
+				<!--Item 3-->
+				<field name="item3_spacer" type="spacer" label="Item 3" />
+				<field name="item3_img" type="media" label="Image" description="Upload item image" />
+				<field name="item3_title" type="text" label="Title" description="Give an item name" />
+				<field name="item3_category" type="text" label="Category" description="Give a category" />
+				<field name="item3_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item3_hr" type="spacer" hr="true" />
+
+				<!--Item 4-->
+				<field name="item4_spacer" type="spacer" label="Item 4" />
+				<field name="item4_img" type="media" label="Image" description="Upload item image" />
+				<field name="item4_title" type="text" label="Title" description="Give an item name" />
+				<field name="item4_category" type="text" label="Category" description="Give a category" />
+				<field name="item4_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item4_hr" type="spacer" hr="true" />
+
+				<!--Item 5-->
+				<field name="item5_spacer" type="spacer" label="Item 5" />
+				<field name="item5_img" type="media" label="Image" description="Upload item image" />
+				<field name="item5_title" type="text" label="Title" description="Give an item name" />
+				<field name="item5_category" type="text" label="Category" description="Give a category" />
+				<field name="item5_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item5_hr" type="spacer" hr="true" />
+
+				<!--Item 6-->
+				<field name="item6_spacer" type="spacer" label="Item 6" />
+				<field name="item6_img" type="media" label="Image" description="Upload item image" />
+				<field name="item6_title" type="text" label="Title" description="Give an item name" />
+				<field name="item6_category" type="text" label="Category" description="Give a category" />
+				<field name="item6_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item6_hr" type="spacer" hr="true" />
+
+				<!--Item 7-->
+				<field name="item7_spacer" type="spacer" label="Item 7" />
+				<field name="item7_img" type="media" label="Image" description="Upload item image" />
+				<field name="item7_title" type="text" label="Title" description="Give an item name" />
+				<field name="item7_category" type="text" label="Category" description="Give a category" />
+				<field name="item7_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item7_hr" type="spacer" hr="true" />
+
+				<!--Item 8-->
+				<field name="item8_spacer" type="spacer" label="Item 8" />
+				<field name="item8_img" type="media" label="Image" description="Upload item image" />
+				<field name="item8_title" type="text" label="Title" description="Give an item name" />
+				<field name="item8_category" type="text" label="Category" description="Give a category" />
+				<field name="item8_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item8_hr" type="spacer" hr="true" />
+
+				<!--Item 9-->
+				<field name="item9_spacer" type="spacer" label="Item 9" />
+				<field name="item9_img" type="media" label="Image" description="Upload item image" />
+				<field name="item9_title" type="text" label="Title" description="Give an item name" />
+				<field name="item9_category" type="text" label="Category" description="Give a category" />
+				<field name="item9_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item9_hr" type="spacer" hr="true" />
+
+				<!--Item 10-->
+				<field name="item10_spacer" type="spacer" label="Item 10" />
+				<field name="item10_img" type="media" label="Image" description="Upload item image" />
+				<field name="item10_title" type="text" label="Title" description="Give an item name" />
+				<field name="item10_category" type="text" label="Category" description="Give a category" />
+				<field name="item10_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item10_hr" type="spacer" hr="true" />
+
+				<!--Item 11-->
+				<field name="item11_spacer" type="spacer" label="Item 11" />
+				<field name="item11_img" type="media" label="Image" description="Upload item image" />
+				<field name="item11_title" type="text" label="Title" description="Give an item name" />
+				<field name="item11_category" type="text" label="Category" description="Give a category" />
+				<field name="item11_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item11_hr" type="spacer" hr="true" />
+
+				<!--Item 12-->
+				<field name="item12_spacer" type="spacer" label="Item 12" />
+				<field name="item12_img" type="media" label="Image" description="Upload item image" />
+				<field name="item12_title" type="text" label="Title" description="Give an item name" />
+				<field name="item12_category" type="text" label="Category" description="Give a category" />
+				<field name="item12_extlink" type="text" label="External Link" description="Give an external url here" />
+				<field name="item12_hr" type="spacer" hr="true" />
+
+			</fieldset>
+			<fieldset
+				name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static">
+					<option
+						value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

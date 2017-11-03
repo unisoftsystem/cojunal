@@ -1,0 +1,151 @@
+.dropdown-menu {
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+  -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+.dropdown-menu > li > a {
+  padding: 5px 20px;
+}
+.dropdown-header {
+  padding: 3px 20px;
+  font-size: 14px;
+}
+.dropdown-header a {
+  color: #999999;
+}
+.dropdown-submenu > .dropdown-menu {
+  margin: 0;
+}
+.dropdown-submenu > a:after {
+  display: block;
+  content: "\f105";
+  float: right;
+  width: 0;
+  height: 0;
+  border: 0;
+  margin-top: 1px;
+  margin-right: -5px;
+  font-family: fontawesome;
+}
+.dropdown-submenu:hover > a:after {
+  border-left-color: #262626;
+}
+.nav > li > .separator {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  line-height: 20px;
+}
+@media (min-width: 768px) {
+  .nav > li > .separator {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+@media (max-width: 991px) {
+  .nav > li > span {
+    padding: 10px 15px;
+    display: inline-block;
+  }
+}
+.nav .caret {
+  border-top-color: #009dcd;
+  border-bottom-color: #009dcd;
+}
+.nav a:hover .caret {
+  border-top-color: #006281;
+  border-bottom-color: #006281;
+}
+.t3-navhelper {
+  background: #f5f5f5;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  color: #555555;
+  padding: 27px 0;
+}
+.t3-navhelper .page-title {
+  font-size: 22px;
+  position: relative;
+  color: #7e7e7e;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding-top: 6px;
+  width: 100%;
+  float: left;
+}
+.breadcrumb {
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
+  float: right;
+}
+.breadcrumb > li {
+  color: #999999;
+}
+.breadcrumb > li + li:before {
+  content: "/\00a0";
+}
+.breadcrumb > li a {
+  color: #999999;
+}
+.breadcrumb > li a:hover {
+  text-decoration: none;
+  color: #009dcd;
+}
+.breadcrumb > .active {
+  color: #999999;
+}
+.breadcrumb > .active + li:before {
+  content: "";
+  padding: 0;
+}
+.breadcrumb > .active .hasTooltip {
+  padding-right: 10px;
+}
+.breadcrumb .divider {
+  display: none;
+}
+.pagination {
+  display: block;
+}
+.pagination:before,
+.pagination:after {
+  content: " ";
+  display: table;
+}
+.pagination:after {
+  clear: both;
+}
+@media screen and (min-width: 768px) {
+  .pagination {
+    float: left;
+  }
+}
+.pagination .pagination {
+  display: inline-block;
+}
+.counter {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 6px 12px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+@media screen and (min-width: 768px) {
+  .counter {
+    float: right;
+  }
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-radius: 0;
+}

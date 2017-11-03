@@ -1,0 +1,208 @@
+.home h1 {
+  line-height: 1;
+}
+.home .jumbotron {
+  background-color: transparent;
+  position: relative;
+  margin-bottom: 0;
+}
+.home .feature-top {
+  padding: 30px 0 20px;
+}
+.home .feature-top .divider {
+  margin: 60px 0 0;
+}
+.home .features-section {
+  padding: 30px 0;
+}
+.home.home-3 .feature-top {
+  padding: 30px 0 40px;
+}
+.home.home-3 .features-section {
+  padding: 60px 0;
+  background: #072a3d;
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+}
+.home.home-3 .portfolio-header {
+  background: #072a3d;
+  padding-top: 60px;
+}
+.home.home-3 .portfolio-section {
+  background: #072a3d;
+}
+.home.home-3 .call-to-action {
+  padding: 0;
+  background: #f6f6f6;
+}
+.home.home-3 .call-to-action .textbar-container {
+  border-top: 0;
+}
+.home.home-3 .call-to-action .textbar-container h3 {
+  color: #000000;
+}
+.home.home-3 .main-bottom {
+  padding: 80px 0;
+}
+.home .portfolio-section {
+  padding: 40px 0;
+}
+.home .call-to-action {
+  padding: 40px 0;
+}
+.home .main-bottom {
+  padding: 40px 0;
+}
+.home .clients-section {
+  padding: 40px 0;
+}
+.home .tweet-section {
+  padding: 5px 0 3px;
+}
+.home .team-header {
+  padding: 60px 0 0;
+}
+.home .team-section {
+  padding: 0 0 80px;
+}
+.home.home-4 .itl-slideshow {
+  padding: 60px 0;
+  background: #f6f6f6;
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+}
+.home.home-4 .main-bottom {
+  padding: 60px 0;
+}
+.home .extension {
+  padding: 60px 0;
+  background: #f6f6f6;
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+}
+.home.home-5 .clients-section {
+  padding: 40px 0 0;
+  background: #f6f6f6;
+}
+.home.home-5 .clients-section .owl-theme .owl-controls {
+  margin-bottom: -17px;
+}
+.home .bottom {
+  background: #ffffff url('../../images/bottom_bg.jpg') no-repeat;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding-top: 90px !important;
+  padding-bottom: 90px !important;
+}
+.home.home-6 .itl-slideshow {
+  padding-bottom: 80px;
+}
+.home.home-6 .features-section {
+  padding: 60px 0;
+}
+.home.home-7 .portfolio-header {
+  background: #f6f6f6;
+  padding-top: 60px;
+}
+.home.home-7 .portfolio-section {
+  background: #f6f6f6;
+}
+.home.home-7 .call-to-action {
+  padding: 0;
+  background: #f6f6f6;
+}
+.home.home-7 .call-to-action .textbar-container {
+  border-top: 0;
+}
+.home.home-7 .call-to-action .textbar-container h3 {
+  color: #000000;
+}
+.home.home-8 .main-top {
+  padding: 0 0 60px;
+}
+.home.home-8 .main-bottom {
+  background: #f6f6f6;
+}
+.home .t3-module {
+  margin-bottom: 30px;
+}
+@media screen and (min-width: 768px) {
+  .home .t3-module {
+    margin-bottom: 0;
+  }
+}
+.home .t3-sl-1 {
+  padding: 0;
+  background: #ffffff;
+  color: #444444;
+  border-bottom: 1px solid #eeeeee;
+}
+.home .t3-sl-1 .jumbotron {
+  border-radius: 0;
+}
+.home .t3-sl-1 .jumbotron .btn {
+  margin-top: 20px;
+}
+.home .t3-sl-2 {
+  text-align: center;
+}
+.home .t3-sl-2 .img-responsive {
+  display: inline-block;
+}
+@media screen and (min-width: 768px) {
+  .home .t3-sl-2 p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+.home .t3-sl-3 p > img {
+  margin-top: 20px;
+}
+@media screen and (min-width: 992px) {
+  .home .t3-sl-3 p > img {
+    margin-top: 0;
+  }
+}
+.home .t3-sl-3,
+.home .t3-sl-4 {
+  border-top: 1px solid #eeeeee;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .home .t3-sl-3 p,
+  .home .t3-sl-4 p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+.home .t3-sl-3 .jumbotron,
+.home .t3-sl-4 .jumbotron {
+  padding-top: 0;
+}
+.home .t3-sl-3 .jumbotron h1,
+.home .t3-sl-4 .jumbotron h1 {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+.home .t3-sl-3 .jumbotron p,
+.home .t3-sl-4 .jumbotron p {
+  font-size: 18px;
+  line-height: 1.25;
+  color: #999999;
+}
+@media screen and (min-width: 768px) {
+  .home .t3-sl-3 .jumbotron p,
+  .home .t3-sl-4 .jumbotron p {
+    font-size: 21px;
+  }
+}
+.home .t3-sl-5 {
+  background: #ffffff;
+  color: #444444;
+  border-top: 1px solid #eeeeee;
+  padding: 0;
+}
+.home .t3-sl-5 .jumbotron {
+  border-radius: 0;
+  margin-bottom: 0;
+}

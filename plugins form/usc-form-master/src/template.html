@@ -1,0 +1,41 @@
+<div>
+
+    <form @submit="sendForm">
+
+        <!-- interar form -->
+        <div v-for="i in dataSource">
+            <div v-if="i.type == 'input'">
+                <label>{{ i.label }}</label>
+                <input v-model="i.model" type="text">
+            </div>
+            <div v-if="i.type == 'input_number'">
+                <label>{{ i.label }}</label>
+                <input v-model="i.model" type="number">
+            </div>
+            <div v-if="i.type == 'input_date'">
+                <label>{{ i.label }}</label>
+                <input v-model="i.model" type="date">
+            </div>
+            <div v-if="i.type == 'checkbox'">
+                <label>{{ i.label }}</label>
+                <input v-model="i.model" type="checkbox">
+            </div>
+            <div v-if="i.type == 'select'">
+                <label>{{ i.label }}</label>
+                <select v-model="i.model">
+					<option value="">12</option>
+				</select>
+            </div>
+        </div>
+
+        <!-- botón  submit -->
+        <div>
+            <input type="submit" value="enviar">
+        </div>
+
+    </form>
+
+
+    <!-- <pre>{{ dataSource | json }}</pre> -->
+
+</div>

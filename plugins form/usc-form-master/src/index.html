@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/component.css">
+	<script src="https://unpkg.com/vue@2.5.2/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- prueba el componente -->
+		<component-name :end-point="'http://localhost:3000/'" :data-source="form"></component-name>
+	</div>
+
+	<script src="js/main.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event) {
+			new Vue({
+				el: '#app',
+				data: {
+					form: [
+						{ label: 'campo1', model: 'campo1', name: 'campo1', type: 'input' },
+						{ label: 'campo2', model: 'campo2', name: 'campo2', type: 'checkbox' },
+						{ label: 'campo3', model: 'campo3', name: 'campo3', type: 'select' },
+						{ label: 'campo4', model: 'campo4', name: 'campo4', type: 'checkbox' },
+						{ label: 'campo5', model: 'campo5', name: 'campo5', type: 'select' },
+						{ label: 'campo6', model: 'campo6', name: 'campo6', type: 'checkbox' },
+						{ label: 'campo7', model: 'campo7', name: 'campo7', type: 'select' }
+					]
+				}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+
+// VARIABLES & MIXINS
+// ------------------
+@import "vars.less"; // Modify this for custom colors, font-sizes, etc
+
+
+// ---------------------------------------------------------
+// HOME
+// ---------------------------------------------------------
+.home {
+
+    // Heading
+    h1 {
+        line-height: 1;
+    }
+
+    h2 {
+        //font-size: floor(@font-size-base * 1.5);
+        // Bigger font size on Tablet / Desktop
+        @media screen and (min-width: @screen-sm) {
+            //font-size: floor(@font-size-base * 2.15);
+        }
+    }
+
+    // Home Jumbotron
+    .jumbotron {
+        background-color: transparent;
+        position: relative;
+        margin-bottom: 0;
+    }
+
+    //feature-top section
+    .feature-top {
+        padding: 30px 0 20px;
+        .divider {
+            margin: 60px 0 0;
+        }
+    }
+    //feature section
+    .features-section {
+        padding: 30px 0;
+    }
+    &.home-3 {
+        .feature-top {
+            padding: 30px 0 40px;
+        }
+        .features-section {
+            padding: 60px 0;
+            background: #f6f6f6;
+            border-top: 1px solid #ededed;
+            border-bottom: 1px solid #ededed;
+        }
+        .portfolio-header {
+            background: #f6f6f6;
+            padding-top: 60px;
+        }
+        .portfolio-section {
+            background: #f6f6f6;
+        }
+        .call-to-action {
+            padding: 0;
+            background: #f6f6f6;
+            .textbar-container {
+                border-top: 0;
+                h3 {
+                    color: @black;
+                }
+            }
+        }
+        .main-bottom {
+            padding: 80px 0;
+        }
+    }
+    //portfolio
+    .portfolio-section {
+        padding: 40px 0;
+    }
+    //c2a section
+    .call-to-action {
+        padding: 40px 0;
+    }
+
+    .main-bottom {
+        padding: 40px 0;
+    }
+
+    .clients-section {
+        padding: 40px 0;
+    }
+
+    .tweet-section {
+        padding: 5px 0 3px;
+    }
+
+    .team-header {
+        padding: 60px 0 0;
+    }
+
+    .team-section {
+        padding: 0 0 80px;
+    }
+
+    &.home-4 {
+        .itl-slideshow {
+            padding: 60px 0;
+            background: #f6f6f6;
+            border-top: 1px solid #ededed;
+            border-bottom: 1px solid #ededed;
+        }
+        .main-bottom {
+            padding: 60px 0;
+        }
+    }
+
+    .extension {
+        padding: 60px 0;
+        background: #f6f6f6;
+        border-top: 1px solid #ededed;
+        border-bottom: 1px solid #ededed;
+    }
+
+    &.home-5 {
+        .clients-section {
+            padding: 40px 0 0;
+            background: #f6f6f6;
+            .owl-theme .owl-controls {
+                margin-bottom: -17px;
+            }
+        }
+    }
+    .bottom {
+        background: #fff url('../images/bottom_bg.jpg') no-repeat;
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding-top: 90px !important;
+        padding-bottom: 90px !important;
+    }
+
+    &.home-6 {
+        .itl-slideshow {
+            padding-bottom: 80px;
+        }
+        .features-section {
+            padding: 60px 0;
+        }
+    }
+
+    &.home-7 {
+        .portfolio-header {
+            background: #f6f6f6;
+            padding-top: 60px;
+        }
+        .portfolio-section {
+            background: #f6f6f6;
+        }
+        .call-to-action {
+            padding: 0;
+            background: #f6f6f6;
+            .textbar-container {
+                border-top: 0;
+                h3 {
+                    color: @black;
+                }
+            }
+        }
+    }
+    &.home-8 {
+        .main-top {
+            padding: 0 0 60px;
+        }
+        .main-bottom {
+            background: #f6f6f6;
+        }
+    }
+
+
+    .t3-module {
+        margin-bottom: 30px;
+        @media screen and (min-width: @screen-sm) {
+            margin-bottom: 0;
+        }
+    }
+
+
+    //
+    // HOME SPOTLIGHTS
+    // ---------------------------------------------------------
+
+    // Spotlight 1
+    // -----------
+    .t3-sl-1 {
+        padding: 0;
+        background: @t3-spotlight-background;
+        color: @t3-spotlight-text-color;
+        border-bottom: 1px solid @t3-border-color;
+        // jumbotron
+        .jumbotron {
+            border-radius: 0;
+            //jumbotron btn
+            .btn {
+                margin-top: @line-height-computed;
+            }
+        }
+    }
+
+
+    // Spotlight 2
+    // -----------
+    .t3-sl-2 {
+        text-align: center;
+
+        .img-responsive {
+            display: inline-block;
+        }
+
+        p {
+            // Bigger Font size in Tablet / Desktop
+            @media screen and (min-width: @screen-sm) {
+                font-size: @t3-font-size-bigger;
+                line-height: floor(@t3-font-size-bigger * @line-height-base);
+            }
+        }
+    }
+
+
+    // Spotlight 3 & 4
+    // ---------------
+    .t3-sl-3 p > img {
+        margin-top: @line-height-computed;
+        @media screen and (min-width: @screen-md) {
+            margin-top: 0;
+        }
+    }
+
+
+    .t3-sl-3,
+    .t3-sl-4 {
+        border-top: 1px solid @t3-border-color;
+        text-align: center;
+
+        p {
+            // Bigger Font size in Tablet / Desktop
+            @media screen and (min-width: @screen-sm) {
+                font-size: @t3-font-size-bigger;
+                line-height: floor(@t3-font-size-bigger * @line-height-base);
+            }
+        }
+
+        // Jumbotron Header
+        .jumbotron {
+            padding-top: 0;
+
+            h1 {
+                margin-bottom: @line-height-computed / 2;
+                margin-top: 0;
+            }
+
+            p {
+                font-size: @font-size-large;
+                line-height: 1.25;
+                color: @gray-light;
+                // Bigger Font size in Tablet / Desktop
+                @media screen and (min-width: @screen-sm) {
+                    font-size: ceil(@font-size-base * 1.5);
+                }
+            }
+
+        }
+
+    }
+
+
+    // Spotlight 5
+    // -----------
+    .t3-sl-5 {
+        background: @t3-spotlight-background;
+        color: @t3-spotlight-text-color;
+        border-top: 1px solid @t3-border-color;
+        padding: 0;
+
+        // jumbotron
+        .jumbotron {
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    // End Home Spotlight
+}

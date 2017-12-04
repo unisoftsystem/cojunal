@@ -1,0 +1,156 @@
+#cojunal-cuarantes {
+	$green:  #09ca69;
+	$blue:  #134695;
+	$dark-blue:  #193153;
+	$yellow:  #f5a623;
+	$white:  #ffffff;
+
+	display: flow-root;
+    margin-bottom: 80px;
+	.b-row {
+		clear: both;
+		width: 100%;
+		.b-col {
+			float: left;
+			&.xs-12 {
+				@media (max-width: 768px) {
+					float: none;
+					width: 100% !important;
+				}
+			}
+			&.md-6 {
+				width: 50%;
+			}
+			.b-cuadrante {
+				padding: 15px;
+				transition: all 0.2s;
+				margin-bottom: 20px;
+				margin: 5px;
+				background-color: $white;
+				box-shadow: 5px 5px 10px #eee;
+				&.b-left {
+					margin-right: 0;
+				}
+				&.b-rigth {
+					margin-left: 0;
+				}
+				&.b-yellow {
+					.b-container {
+						.b-number {
+							background-color: $yellow;	
+						}
+					}
+					border-bottom: 3px solid $yellow;
+				}
+				&.b-dark-blue {
+					border-bottom: 3px solid $dark-blue;
+					.b-container {
+						.b-number {
+							background-color: $dark-blue;	
+						}
+					}
+				}
+				&.b-blue {
+					border-bottom: 3px solid $blue;
+					.b-container {
+						.b-number {
+							background-color: $blue;	
+						}
+					}
+				}
+				&.b-green {
+					border-bottom: 3px solid $green;
+					.b-container {
+						.b-number {
+							background-color: $green;	
+						}
+					}
+				}
+				&:hover {
+					transform: scale(0.95);
+					.b-container {
+						.b-divisor {
+						    border-bottom: 1px solid rgba(238, 238, 238, 0.29);
+						}
+						.b-info {
+							.b-valor {
+								color: $white;
+							}
+							.b-tiempo-mora {
+								color: $white;
+							}
+						}
+					}
+					&.b-yellow {
+						.b-container {
+							.b-number {
+								color: $yellow;
+								background-color: $white;
+							}
+						}
+						background-color: $yellow;	
+					}
+					&.b-dark-blue {
+						.b-container {
+							.b-number {
+								color: $dark-blue;
+								background-color: $white;
+							}
+						}
+						background-color: $dark-blue;	
+					}
+					&.b-blue {
+						.b-container {
+							.b-number {
+								color: $blue;
+								background-color: $white;
+							}
+						}
+						background-color: $blue;	
+					}
+					&.b-green {
+						.b-container {
+							.b-number {
+								color: $green;
+								background-color: $white;
+							}
+						}
+						background-color: $green;	
+					}
+				}
+				.b-container {
+					.b-number {
+						margin: 20px auto;
+						box-shadow: 0px 0px 10px 3px #eee;
+						font-weight: bold;
+						font-size: 40px;
+						width: 70px;
+						height: 70px;
+						display: block;
+						border-radius: 50%;
+						line-height: 70px;
+						background-color: red;
+						text-align: center;
+						color: $white;
+					}
+					.b-divisor {
+						margin: 30px 0;
+						border-bottom: 1px solid #eee;
+					}
+					.b-info {
+						.b-valor {
+						}
+						.b-tiempo-mora {
+						}
+					}
+				}
+			}
+		}
+	}
+	.b-clear {
+		clear: both;
+	}
+	.b-separator {
+		margin: 20px 0;
+	}
+}

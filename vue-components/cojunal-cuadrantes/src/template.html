@@ -1,0 +1,233 @@
+<div id="cojunal-cuarantes">
+
+	<div v-if="verified(cuadrantes.deudores_mora_30[0].total)">
+
+		<!-- row con los cuadrantes -->
+		<div class="b-row">
+
+			<div class="b-col xs-12 md-6">
+				<div class="b-cuadrante b-yellow b-rigth">
+					<a href="http://cojunal.com/plataforma/beta/admin/RangeDeudoresMora/1?page=1" class="b-container">
+						<span class="b-number">1</span>
+						<div class="b-divisor"></div>
+						<div class="b-info">
+							<div class="b-valor b-row">
+								<div class="b-col md-6">
+									Valor
+								</div>
+								<div class="b-col md-6">
+									$ {{ parseFloat(cuadrantes.deudores_mora_30[0].total || 0).format(0, 0, '.') }}
+								</div>
+							</div>
+							<div class="b-tiempo-mora b-row">
+								<div class="b-col md-6">
+									Tiempo de mora
+								</div>
+								<div class="b-col md-6">
+									30 dias
+								</div>
+							</div>
+							<div class="b-row"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="b-col xs-12 md-6">
+				<div class="b-cuadrante b-dark-blue b-left">
+					<a href="http://cojunal.com/plataforma/beta/admin/RangeDeudoresMora/2?page=1" class="b-container">
+						<span class="b-number">2</span>
+						<div class="b-divisor"></div>
+						<div class="b-info">
+							<div class="b-valor b-row">
+								<div class="b-col md-6">
+									Valor
+								</div>
+								<div class="b-col md-6">
+									$ {{ parseFloat(cuadrantes.deudores_mora_30_60[0].total || 0).format(0, 0, '.') }}
+								</div>
+							</div>
+							<div class="b-tiempo-mora b-row">
+								<div class="b-col md-6">
+									Tiempo de mora
+								</div>
+								<div class="b-col md-6">
+									31-60 dias
+								</div>
+							</div>
+							<div class="b-row"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- separador de columnas  -->
+		<div class="b-separator b-clear"></div>
+
+		<!-- row con los cuadrantes -->
+		<div class="b-row">
+
+			<div class="b-col xs-12 md-6">
+				<div class="b-cuadrante b-blue b-rigth">
+					<a href="http://cojunal.com/plataforma/beta/admin/RangeDeudoresMora/3?page=1" class="b-container">
+						<span class="b-number">3</span>
+						<div class="b-divisor"></div>
+						<div class="b-info">
+							<div class="b-valor b-row">
+								<div class="b-col md-6">
+									Valor
+								</div>
+								<div class="b-col md-6">
+									$ {{ parseFloat(cuadrantes.deudores_mora_61_90[0].total || 0).format(0, 0, '.') }}
+								</div>
+							</div>
+							<div class="b-tiempo-mora b-row">
+								<div class="b-col md-6">
+									Tiempo de mora
+								</div>
+								<div class="b-col md-6">
+									61-90 dias
+								</div>
+							</div>
+							<div class="b-row"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="b-col xs-12 md-6">
+				<div class="b-cuadrante b-green b-left">
+					<a href="http://cojunal.com/plataforma/beta/admin/RangeDeudoresMora/4?page=1" class="b-container">
+						<span class="b-number">4</span>
+						<div class="b-divisor"></div>
+						<div class="b-info">
+							<div class="b-valor b-row">
+								<div class="b-col md-6">
+									Valor
+								</div>
+								<div class="b-col md-6">
+									$ {{ parseFloat(cuadrantes.deudores_mora_91_120[0].total || 0).format(0, 0, '.') }}
+								</div>
+							</div>
+							<div class="b-tiempo-mora b-row">
+								<div class="b-col md-6">
+									Tiempo de mora
+								</div>
+								<div class="b-col md-6">
+									91-120 dias
+								</div>
+							</div>
+							<div class="b-row"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- separador de columnas  -->
+		<div class="b-separator b-clear"></div>
+
+		<!-- row con los cuadrantes -->
+		<div class="b-row">
+
+			<div class="b-col xs-12 md-6">
+				<div class="b-cuadrante b-yellow b-rigth">
+					<a href="http://cojunal.com/plataforma/beta/admin/RangeDeudoresMora/5?page=1" class="b-container">
+						<span class="b-number">5</span>
+						<div class="b-divisor"></div>
+						<div class="b-info">
+							<div class="b-valor b-row">
+								<div class="b-col md-6">
+									Valor
+								</div>
+								<div class="b-col md-6">
+									$ {{ parseFloat(cuadrantes.deudores_mora_121_180[0].total || 0).format(0, 0, '.') }}
+								</div>
+							</div>
+							<div class="b-tiempo-mora b-row">
+								<div class="b-col md-6">
+									Tiempo de mora
+								</div>
+								<div class="b-col md-6">
+									121-180 dias
+								</div>
+							</div>
+							<div class="b-row"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="b-col xs-12 md-6">
+				<div class="b-cuadrante b-dark-blue b-left">
+					<a href="http://cojunal.com/plataforma/beta/admin/RangeDeudoresMora/6?page=1" class="b-container">
+						<span class="b-number">6</span>
+						<div class="b-divisor"></div>
+						<div class="b-info">
+							<div class="b-valor b-row">
+								<div class="b-col md-6">
+									Valor
+								</div>
+								<div class="b-col md-6">
+									$ {{ parseFloat(cuadrantes.deudores_mora_181_360[0].total || 0).format(0, 0, '.') }}
+								</div>
+							</div>
+							<div class="b-tiempo-mora b-row">
+								<div class="b-col md-6">
+									Tiempo de mora
+								</div>
+								<div class="b-col md-6">
+									181-360 dias
+								</div>
+							</div>
+							<div class="b-row"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- separador de columnas  -->
+		<div class="b-separator b-clear"></div>
+
+		<!-- row con los cuadrantes -->
+		<div class="b-row">
+
+			<div class="b-col xs-12 md-6">
+				<div class="b-cuadrante b-blue b-rigth">
+					<a href="http://cojunal.com/plataforma/beta/admin/RangeDeudoresMora/7?page=1" class="b-container">
+						<span class="b-number">7</span>
+						<div class="b-divisor"></div>
+						<div class="b-info">
+							<div class="b-valor b-row">
+								<div class="b-col md-6">
+									Valor
+								</div>
+								<div class="b-col md-6">
+									$ {{ parseFloat(cuadrantes.deudores_mora_360[0].total || 0).format(0, 0, '.') }}
+								</div>
+							</div>
+							<div class="b-tiempo-mora b-row">
+								<div class="b-col md-6">
+									Tiempo de mora
+								</div>
+								<div class="b-col md-6">
+									más de 361 dias
+								</div>
+							</div>
+							<div class="b-row"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+</div>

@@ -1,0 +1,35 @@
+<div id="deudores-banner">
+	
+	<div>
+		
+		<div class="b-col b-col-60">
+			
+			<div class="b-title-container">
+				<span class="b-title">DEUDORES</span>
+				<span class="b-separator"></span>
+				<div class="b-valor">Valor unidad: <b>FALTA</b></div>
+				<div class="b-deudores">Número de deudores: {{ parseFloat(data.cantidad_deudores).format(0, 0, '.') }}</div>
+			</div>
+
+		</div>
+
+		<div class="b-col b-col-40">
+			<div class="b-detail">
+				<div class="b-percentage">
+					<b>Porcentaje de recuperacion total:</b> <span>{{ parseFloat(data.porcentaje_recuperacion).format(0, 2, '.') }}</span>
+				</div>
+				<br>
+				<div class="b-link">
+					<a href="#">
+						Ver toda la lista 
+						<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+			
+		<div class="b-clear"></div>
+
+	</div>
+
+</div>

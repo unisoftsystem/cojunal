@@ -1,0 +1,61 @@
+#deudores-banner {
+	box-shadow: 5px 5px 10px #eee;
+	.b-col {
+		float: left;
+		height: 135px;
+		@media (max-width: 768px) {
+			float: none;
+			width: 100% !important;
+		}
+		&.b-col-60 {
+			width: 70%;
+			background-color: #193153;
+			background-image: url('http://cojunal.com/plataforma/assets/img/bg_panel.png');
+			position: relative;
+		}
+		&.b-col-40 {
+			width: 30%;
+			position: relative;
+			background-color: #ffffff;
+		}
+	}
+	.b-clear {
+		clear: both;
+	}
+	.b-title-container {
+		color: #ffffff;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		margin-left: 40px;
+		.b-title {
+			font-weight: bold;
+			font-size: 25px;
+		}
+		.b-separator {
+			border-bottom: 2px solid #fff;
+			display: block;
+			width: 100px;
+			margin-bottom: 10px;
+			margin-top: 5px;
+		}
+		.b-valor {
+			font-weight: lighter;
+		}
+		.b-deudores {
+			font-weight: lighter;
+		}
+	}
+	.b-detail {
+		margin-left: 40px;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		.b-percentage {
+
+		}
+		.b-link {
+
+		}
+	}
+}

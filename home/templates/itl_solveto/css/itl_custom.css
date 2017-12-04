@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'bignoodletitling';
+    src: url('../fonts/bignoodletitling.eot');
+    src: local('bignoodletitling'),
+    url('../fonts/bignoodletitling.woff') format('woff'),
+    url('../fonts/bignoodletitling.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('../fonts/BebasNeue.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/*ns2 buttons*/
+.style1 .ns2-art-prev,
+.style1 .ns2-art-next {
+	border: 1px solid #d3d3d3;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background-repeat: no-repeat;
+	background-position: 50% !important;
+	width: 46px !important;
+	height: 30px !important;
+	text-indent: -999px;
+
+}
+.style1 .ns2-art-prev {
+	background-image: url(../images/arrow-left-normal.png) !important;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+.style1 .ns2-art-prev:hover {
+	background-image: url(../images/arrow-left.png) !important;
+}
+.style1 .ns2-art-next {
+	background-image: url(../images/arrow-right-normal.png) !important;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+.style1 .ns2-art-next:hover {
+	background-image: url(../images/arrow-right.png) !important;
+}
+.style1 .ns2-art-controllers {
+	position: absolute;
+	right: 30px;
+	top: 0;
+}
+
+.artsexylightbox {
+    margin: 7px !important;
+    border: 0 !important;
+	float: left;
+}
+
+#btl .btl-panel {
+	border-left: 1px solid #e2e3e2;
+	border-right: 1px solid #e2e3e2;
+	padding: 11px 5px;
+}
+
+.easyPieChart {
+	position: relative;
+	text-align: center;
+	margin:0 auto;
+	font-size: 30px !important;
+	color: #2f383d;
+}
+
+.easyPieChart canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.chart_skill .text {
+	line-height: 38px;
+	width: 164px;
+	float: left;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 26px;
+	margin-left: -82px;
+	margin-top: -18px;
+}
+.chart_skill h5 {
+	text-align: center;
+	width: 100%;
+	margin-top: 28px;
+	color: #2f383d;
+	font-weight: bold;
+	padding-bottom: 15px;
+	font-family: "Open Sans";
+	text-transform: uppercase;
+}

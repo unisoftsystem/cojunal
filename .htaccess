@@ -1,0 +1,66 @@
+<IfModule php5_module>
+php_value date.timezone "America/Bogota"
+</IfModule>
+AddDefaultCharset UTF-8
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+
+RewriteRule prueba.html http://www.google.es [R]
+
+# Make the backend accessible via url: http://site/cms.
+RewriteRule ^cms cms.php
+RewriteRule ^api api.php
+
+# Cambiando la ruta /cmsBase/
+RewriteEngine on
+RewriteRule ^cmsBase(/.*|)$ $1 [L,NC]
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php #rule apache server old: RewriteRule ^.*$ /index.php [L]
+RewriteRule . index.php
+#RewriteCond %{HTTP_HOST} !^www.dominio.com$ [NC]
+#RewriteRule ^(.*)$ http://www.dominio.com/$1 [L,R=301]
+#RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
+#RewriteRule .* – [F,L]
+#RewriteCond %{HTTP_HOST} ^98\.128\.229\.77
+#RewriteRule (.*) http://www.dominio.com/$1 [R=301,L]
+#
+# Reescritura de URL's para URL's amigables
+# Reescribir la URL solicitada por el usuario
+#   Entrada:  listado-deudores
+#   Salida: dashboard/listDebtor
+RewriteRule ^listado-deudores dashboard/listDebtor
+RewriteRule ^iniciar-sesion secure
+
+### EXPIRES CACHING ##
+#<IfModule mod_expires.c>
+#ExpiresActive On
+#ExpiresByType image/jpg "access 1 year"
+#ExpiresByType image/jpeg "access 1 year"
+#ExpiresByType image/gif "access 1 year"
+#ExpiresByType image/png "access 1 year"
+#ExpiresByType text/css "access 1 month"
+#ExpiresByType text/html "access 1 month"
+#ExpiresByType application/pdf "access 1 month"
+#ExpiresByType text/x-javascript "access 1 month"
+#ExpiresByType application/x-shockwave-flash "access 1 month"
+#ExpiresByType image/x-icon "access 1 year"
+#ExpiresDefault "access plus 1 month"
+#</IfModule>
+### EXPIRES CACHING ##
+#<IfModule mpm_worker_module>
+#    ServerLimit          40
+#    StartServers          2
+#    MaxClients          1000
+#    MinSpareThreads      25
+#    MaxSpareThreads      75 
+#    ThreadsPerChild      25
+#    MaxRequestsPerChild   0
+#</IfModule>
+#SetOutputFilter DEFLATE
+
+

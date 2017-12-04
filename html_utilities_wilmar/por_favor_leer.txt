@@ -1,0 +1,5 @@
+Esta carpeta contiene lo poco que se ha podido salvar de las vistas de la plataforma, debido de que a pesar de usar
+Foundation como framework css, el initial commit modifico las clases y funciones js del framework en cuestion.
+
+Asi que si encuentras una vista, funcion js o clase css, no dudes en agregarla a esta carpeta asi vamos 
+documentando lo que quiso hacer el primer desarrollador 

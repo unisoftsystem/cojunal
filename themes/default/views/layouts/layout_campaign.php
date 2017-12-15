@@ -79,7 +79,10 @@ switch (count($nameSeparete)) {
 
   </style>
   <?php require 'javascriptPrototipesUtilities.php' ?>
+<<<<<<< HEAD
   <link rel="stylesheet" href="http://cojunal.com/plataforma/beta/assets/site/css/profile_admin/usuarios.css">
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
 </head>
 
 <body>
@@ -163,6 +166,7 @@ switch (count($nameSeparete)) {
 		<script src="assets/js/lib/plugins.js"></script>
 		<script src="assets/js/app.js"></script> -->
 		<script src="<?php echo Yii::app()->baseUrl;?>/assets/js/app.min.js"></script>
+<<<<<<< HEAD
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js'></script>
     <script src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
@@ -178,6 +182,9 @@ switch (count($nameSeparete)) {
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.0/css/buttons.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.foundation.min.css" />
 
+=======
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
    	</main>    
     <!--Fin Contenidos Sitio-->
 

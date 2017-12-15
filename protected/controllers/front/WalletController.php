@@ -895,6 +895,7 @@ class WalletController extends GxController {
                         ";
 
     }
+<<<<<<< HEAD
 
     /**
      * Consultar estado de la deuda
@@ -910,4 +911,6 @@ class WalletController extends GxController {
             'iniciales' => 'WI'
         ]);
     }
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
 }

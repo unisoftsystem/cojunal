@@ -2373,7 +2373,11 @@ class CActiveRecordMetaData
 
 	private $_modelClassName;
 
+<<<<<<< HEAD
 	/*
+=======
+	/**
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
 	 * Constructor.
 	 * @param CActiveRecord $model the model instance
 	 * @throws CDbException if specified table for active record class cannot be found in the database

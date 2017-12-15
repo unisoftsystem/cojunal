@@ -486,9 +486,12 @@ class DashboardController extends Controller {
         $where = 'idCampaign=' .$campaign->idCampaign;
 
         $model = Viewlistdebtors::model()->findAll($query);
+<<<<<<< HEAD
 
         $stadosAndSaldos = $model;
 
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
         $command=Yii::app()->db->createCommand();
         $command->select('sum(capitalValue)');
         $command->from('viewlistdebtors');
@@ -570,7 +573,10 @@ class DashboardController extends Controller {
             );
 
         $data = array(
+<<<<<<< HEAD
             'stadosAndSaldos' => $stadosAndSaldos, 
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
             'debtorsCount'=>count($model), 
             'valueUnity'=>money_format('%n',($valueUnity)), 
             'recover'=>$recover, 

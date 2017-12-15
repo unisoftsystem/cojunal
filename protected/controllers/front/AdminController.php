@@ -198,7 +198,11 @@ class AdminController extends AdminBaseController {
 
       $this->performAjaxValidation($model, 'advisers-form');
 
+<<<<<<< HEAD
       //$model->setAttributes($_POST['Advisers']);
+=======
+      $model->setAttributes($_POST['Advisers']);
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
       $modelAuthAssigment->userid = $model->idAuthAssignment;
       $model->email = $model->idAuthAssignment;
       unset($model->idAuthAssignment);
@@ -212,49 +216,70 @@ class AdminController extends AdminBaseController {
               $modelAuthAssigment->bizrule = "Coordinador";
               $modelAuthAssigment->data = "Rol Coordinador";
               $modelAuthAssigment->itemname = 'Coordinador';
+<<<<<<< HEAD
               $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
               break;
             // cordinador juridico
             case 'CJuridico':
               $modelAuthAssigment->bizrule = "Rol de coordinador jurídico";
               $modelAuthAssigment->data = "Rol de coordinador jurídico";
               $modelAuthAssigment->itemname = 'Coordinador jurídico';
+<<<<<<< HEAD
               $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
               break;
             // cordinador pre juridico
             case 'CPJuridico':
               $modelAuthAssigment->bizrule = "Rol de coordinador pre jurídico";
               $modelAuthAssigment->data = "Rol de coordinador pre jurídico";
               $modelAuthAssigment->itemname = 'Coordinador pre jurídico';
+<<<<<<< HEAD
               $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
               break;
             // asesor
             case 'A':
               $modelAuthAssigment->bizrule = "Rol asesor";
               $modelAuthAssigment->data = "Rol asesor";
               $modelAuthAssigment->itemname = 'Asesor';
+<<<<<<< HEAD
               $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
               break;
             // asesor juridico
             case 'AJuridico':
               $modelAuthAssigment->bizrule = "Rol de asesor jurídico";
               $modelAuthAssigment->data = "Rol de asesor jurídico";
               $modelAuthAssigment->itemname = 'Asesor jurídico';
+<<<<<<< HEAD
               $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
               break;
             // asesor pre juridico
             case 'APJuridico':
               $modelAuthAssigment->bizrule = "Rol de asesor pre jurídico";
               $modelAuthAssigment->data = "Rol de asesor pre jurídico";
               $modelAuthAssigment->itemname = 'Asesor pre jurídico';
+<<<<<<< HEAD
               $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
               break;
             // asesor
             default:
               $modelAuthAssigment->bizrule = "Rol asesor";
               $modelAuthAssigment->data = "Rol asesor";
               $modelAuthAssigment->itemname = 'Asesor';
+<<<<<<< HEAD
               $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
               break;
           }
         }
@@ -266,6 +291,7 @@ class AdminController extends AdminBaseController {
         $model->monthlyGoal = 0;
         $hash = substr(md5($now), 0, 8);
         $model->passwd = md5($hash);
+<<<<<<< HEAD
         $model->parentAdviser = $_POST['Advisers']['parentAdviser'];        
         $model->name = $_POST['Advisers']['name'];
         $model->email = $_POST['Advisers']['idAuthAssignment'];
@@ -280,11 +306,14 @@ Advisers[status_idStatus]:2
 Advisers[parentAdviser]:83
 Advisers[perfil]:AJuridico */
 
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
 
         if(count(Advisers::model()->findByAttributes(array('email'=>$model->email))) > 0
           || count(AuthAssignment::model()->findByAttributes(array('userid'=>$modelAuthAssigment->userid))) > 0) {
             Yii::log("No se pudo crear el usuario. Ya existe el correo o el nombre de usuario en la base de datos" . $keyPermission, "error", "actionCreate");
             Yii::app()->user->setFlash("error", Yii::t('app', "No se pudo crear el usuario. Ya existe el correo o el nombre de usuario en la base de datos"));
+<<<<<<< HEAD
             $this->redirect(['usuarios', 'tab' => 'formulario']);
         }else{
           if($newToken->save()){         
@@ -292,6 +321,14 @@ Advisers[perfil]:AJuridico */
               $model->idAuthAssignment = $modelAuthAssigment->idAuthAssignment;             
               if ($model->save()) {
                 //echo('model save <br>');
+=======
+        }else{
+          if($newToken->save()){
+            if($modelAuthAssigment->save()){
+              $model->idAuthAssignment = $modelAuthAssigment->idAuthAssignment;
+              if ($model->save()) {
+                echo('model save <br>');
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
                 $mailSender = $this->sendMailAdvisers($keyPermission, $model->name, $model->email,$modelAuthAssigment->userid,$hash);
                 if (Yii::app()->getRequest()->getIsAjaxRequest()){
                   Yii::app()->end();
@@ -302,9 +339,14 @@ Advisers[perfil]:AJuridico */
                 }
               }
             }else {
+<<<<<<< HEAD
               Yii::app()->user->setFlash("error", Yii::t('app', "El nombre del usuario ya se encuentra registrado"));            
              // $this->redirect(array('usuarios'));
              $this->redirect(['usuarios', 'tab' => 'formulario']);
+=======
+              Yii::app()->user->setFlash("error", Yii::t('app', "El nombre del usuario ya se encuentra registrado"));
+              $this->redirect(array('usuarios'));
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
             }
           }else{
             Yii::log("No se ha podido cargar el key para envio de correo " . $keyPermission, "error", "actionCreate");
@@ -421,7 +463,10 @@ Advisers[perfil]:AJuridico */
         $model->dUpdate = $now;
         $hash = substr(md5($now), 0, 8);
         $model->passwd = md5($hash);
+<<<<<<< HEAD
         $model->passwd = $hash;
+=======
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
         $modelAdviser = Advisers::model()->findByPk($model->idAdviser);
         $modelAuthAssigment->userid = $model->contactEmail;
         $modelAuthAssigment->bizrule = "Rol empresa";
@@ -429,7 +474,11 @@ Advisers[perfil]:AJuridico */
         $modelAuthAssigment->itemname = "Empresa";
         if(count(Advisers::model()->findByAttributes(array('email'=>$model->contactEmail)))>0 || count(AuthAssignment::model()->findByAttributes(array('userid'=>$modelAuthAssigment->userid)))>0){
 
+<<<<<<< HEAD
           if( isset($_POST['editar']) && $_POST['editar'] == 1){
+=======
+          if( $_POST['editar'] == 1){
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
             $Adviserbase->update_clientes();
             Yii::app()->user->setFlash("error", Yii::t('app', "Registro mofificado con éxito"));
 
@@ -882,6 +931,7 @@ Advisers[perfil]:AJuridico */
                 $estado = "PENDIENTE";
               }
 
+<<<<<<< HEAD
               /***
   wallets_tempo.nameReference1,
   wallets_tempo.relationshipReferenc1,
@@ -933,6 +983,26 @@ Advisers[perfil]:AJuridico */
                                 'saldo_recaudado' => $lis_deudas['totalRecaudado'],
                                 'fecha'           => $lis_deudas['createAt'],
                                 'edad_deuda'      => '0',
+=======
+ 
+          foreach( $deudores as $lis_deudores){
+
+            $date1 = new DateTime(date('Y-m-d'));            
+            
+            $dt = substr($lis_deudas['createAt'], 0, 10);
+            $date2 = new DateTime( $dt);
+            $diff = $date1->diff($date2);
+            
+            
+
+                $xls[] = array('cliente'       => $lis_deudas['campaignName'],
+                                'nombre_campana'  => $lis_deudas['campaignName'],
+                                'asesor'          => $lis_deudores['asesor'],
+                                'saldo_asignado'  => $lis_deudas['saldoCampana'],
+                                'saldo_recaudado' => $lis_deudores['value'],
+                                'fecha'           => $lis_deudas['createAt'],
+                                'edad_deuda'      => $diff->days." Dias" ,
+>>>>>>> 81973bf585de445668108c4c821fc0399d707555
                                 'estado'          => $estado,
                                 'nit'             => $lis_deudores['idNumber'],
                                 'nom_deudor'      => $lis_deudores['legalName'],

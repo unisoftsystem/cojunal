@@ -15,7 +15,7 @@ class WalletsByCampaign extends GxActiveRecord
 			':idCampaign' => $data['idCampaign'], 
 			':campaignName' => $data['campaignName'], 
 			':serviceType' => $data['serviceType'], 
-			':notificationType' => $data ['notificationType']
+			':notificationType' => $data['notificationType']
 		];
 		return Yii::app()->db->createCommand($sql)->execute($parameters);
 	}
@@ -72,5 +72,12 @@ class WalletsByCampaign extends GxActiveRecord
 			':idWalletByCampaign' => $datos['idWalletByCampaign']
 		];
 		return Yii::app()->db->createCommand($sql)->execute($parameters);
+	}
+
+	public static function getBalanceCampaings($id)
+	{
+		$sql = sprintf('SELECT a.campaignName, SUM(b.capitalValue) as "saldo_asignado", COUNT(b.id) as total_deudores, COUNT(q1.idCampaign) as q1_deudores, COUNT(q2.idCampaign) as q2_deudores, COUNT(q3.idCampaign) as q3_deudores, COUNT(q4.idCampaign) as q4_deudores, COUNT(q5.idCampaign) as q5_deudores, COUNT(q6.idCampaign) as q6_deudores, COUNT(q7.idCampaign) as q7_deudores, ((SUM(c.value) / "saldo_asignado") * 100) as recuperacion, a.createAt FROM wallets_by_campaign a INNER JOIN wallets_tempo b ON b.idCampaign = a.idWalletByCampaign INNER JOIN payments c ON c.idPayment = b.id LEFT JOIN q1 ON q1.idCampaign = a.IdCampaign LEFT JOIN q2 ON q2.idCampaign = a.IdCampaign LEFT JOIN q3 ON q3.idCampaign = a.IdCampaign LEFT JOIN q4 ON q4.idCampaign = a.IdCampaign LEFT JOIN q5 ON q5.idCampaign = a.IdCampaign LEFT JOIN q6 ON q6.idCampaign = a.IdCampaign LEFT JOIN q7 ON q7.idCampaign = a.IdCampaign WHERE a.IdCampaign = "%s" GROUP BY a.idWalletByCampaign', $id);
+
+		return Yii::app()->db->createCommand($sql)->queryAll();
 	}
 }

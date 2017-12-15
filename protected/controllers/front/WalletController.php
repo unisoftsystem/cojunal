@@ -41,31 +41,166 @@ class WalletController extends GxController {
         );
     }
 
+    function actionUpdateTareaAgenda()
+    {
+        $sql = 'UPDATE agendas SET completada = "'.$_POST["completada"].'"';
+        if(!empty($_POST['idAdviser'])) {
+            $sql .=  ', dAction = "'.$this->convertDate($_POST["idAdviser"]).'"';
+        } 
+        $sql .= ' WHERE idAgenda = "'.$_POST["idAgenda"].'"';
+
+        if (Yii::app()->db->createCommand($sql)->execute()) {
+            if(!empty($_POST['log']) && isset($_POST['log'])) {
+                $sql = sprintf('SELECT * FROM agendas WHERE idAgenda = "%s"', $_POST['idAgenda']);
+                $agenda = Yii::app()->db->createCommand($sql)->queryAll();
+                $agenda  = $agenda[0];
+                
+                $sql = sprintf('INSERT INTO agendas (idAgenda, idAction, dAction, dCreation, idWallet, idAdviser, idEffect, comment, timer, completada) VALUES (NULL, "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", 0)', 
+                    $agenda['idAction'],
+                    $agenda['dAction'],
+                    $agenda['dCreation'],
+                    $agenda['idWallet'],
+                    $agenda['idAdviser'],
+                    $agenda['idEffect'],
+                    $_POST['log'],
+                    $agenda['timer']
+                );
+
+                Yii::app()->db->createCommand($sql)->execute();
+            }
+            Yii::app()->user->setFlash('success', "Registros actualizados con éxito");   
+        }else {
+            Yii::app()->user->setFlash('error', "No fue posible procesar tu solicitud");   
+        }
+        $url = $_SERVER['HTTP_REFERER'];
+        $parts = explode('/', $url);
+        if (count($parts) === 9) array_pop($parts);
+        $uri = implode('/', $parts);
+        header('Location:'.$uri);  
+    }
+
     // para cargar la maqueta
     /* public function missingAction($actionID)
       {
       $this->render(strtr($actionID,array('.php'=>'')));
       } */
 
-    public function actionSearch($idWallet) {
-        $sysparams    = $this->loadModel(1,'Sysparams');
-        $status       = Status::model()->findAll();
-        $paymentTypes = Paymentypes::model()->findAll();     
-        $model        = $this->loadModel($idWallet, 'Wallets');
-        $payments     = Payments::model()->findAllByAttributes(array('idWallet'=>$idWallet));
-        $actions      = Action::model()->findAll();
-        $this->render(
-            'wallet', 
-            array(
-                'model'        =>$model,
-                'sysparams'    =>$sysparams,
-                'status'       =>$status,
-                'paymentTypes' =>$paymentTypes,
-                'payments'     =>$payments,
-                'actions'      =>$actions
-            )
+    public function actionSearch($idWallet, $idTarea = 0) {
+        // $sysparams    = $this->loadModel(1,'Sysparams');
+        // $status       = Status::model()->findAll();
+        // $paymentTypes = Paymentypes::model()->findAll();     
+        // $model        = $this->loadModel($idWallet, 'Wallets');
+        // $payments     = Payments::model()->findAllByAttributes(array('idWallet'=>$idWallet));
+        // $actions      = Action::model()->findAll();
+        // $this->render(
+        //     'wallet', 
+        //     array(
+        //         'model'        =>$model,
+        //         'sysparams'    =>$sysparams,
+        //         'status'       =>$status,
+        //         'paymentTypes' =>$paymentTypes,
+        //         'payments'     =>$payments,
+        //         'actions'      =>$actions
+        //     )
+        // );
+        // 
+        
+        // Session
+        $sesion = Yii::app()->session;
+        $user = $sesion['cojunal'];
+        $idAdviser = $user->idAdviser;
+
+        // Porcentaje de recuperacion
+        $sqlRecuperacion = 'SELECT ((SUM(payments.value) / SUM(wallets_tempo.capitalValue)) * 100) AS porcentaje FROM payments INNER JOIN wallets_tempo ON wallets_tempo.id = payments.idPayment WHERE payments.idAdviser = '.$user->idAdviser;
+        $recuperacion = Yii::app()->db->createCommand($sqlRecuperacion)->queryAll();
+        $recuperacion = $recuperacion[0]['porcentaje'];
+
+        // Estados
+        $sqlEstados = 'SELECT * FROM status';
+        $estados = Yii::app()->db->createCommand($sqlEstados)->queryAll();
+
+        // Deudor
+        $sqlDeudor = sprintf('SELECT * FROM wallets_tempo WHERE id = "%s"', $_GET['idWallet']);
+        $deudor = Yii::app()->db->createCommand($sqlDeudor)->queryAll();
+        $deudor = $deudor[0];
+
+        // Tipos de pago
+        $sqlPagos = 'SELECT * FROM paymentypes';
+        $pagos = Yii::app()->db->createCommand($sqlPagos)->queryAll();
+
+        // Tipos de pago
+        $sqlAcciones = 'SELECT * FROM action';
+        $acciones = Yii::app()->db->createCommand($sqlAcciones)->queryAll();
+
+        // Tipos de pago
+        $sqlAcciones = 'SELECT * FROM action';
+        $acciones = Yii::app()->db->createCommand($sqlAcciones)->queryAll();
+
+        // Tarea
+        $sqlTarea = sprintf('SELECT * FROM agendas WHERE  idAgenda = "%s"', $idTarea);
+        $tarea = Yii::app()->db->createCommand($sqlTarea)->queryAll();
+        $tarea = (!empty($tarea[0]) ?  $tarea[0] : false);
+
+        // ASesores
+        $sqlAsesores = "SELECT idAdviser, name FROM advisers WHERE idAuthAssignment IN (SELECT idAuthAssignment FROM authassignment WHERE itemname = 'Asesor')";
+        $asesores = Yii::app()->db->createCommand($sqlAsesores)->queryAll();
+
+        // Datos financieros
+        $sqldatosFinancieros = sprintf('SELECT wallets_tempo.prescription, wallets_tempo.capitalValue, wallets_by_campaign.idWalletByCampaign, wallets_by_campaign.campaignName, (wallets_tempo.capitalValue * wallets_by_campaign.interests) AS "intereses", (wallets_tempo.capitalValue * wallets_by_campaign.fee) AS "honorarios", (wallets_tempo.capitalValue + "intereses" + "honorarios") AS "saldo_total", ("saldo_total" - SUM(payments.value)) AS "saldo_mora", wallets_tempo.product, wallets_tempo.accountNumber, wallets_by_campaign.createAt AS fecha_asignacion, (SELECT dCreation FROM payments WHERE payments.idWallet = wallets_tempo.id ORDER BY idPayment DESC LIMIT 1) AS ultimo_pago, SUM(payments.value) AS pagos, wallets_tempo.titleValue, wallets_tempo.validThrough, DATEDIFF(NOW(), wallets_by_campaign.createAt) AS dias_mora, wallets_tempo.negotiation, wallets_tempo.vendorEmail, wallets_tempo.vendorName, wallets_tempo.vendorPhone, wallets_tempo.legalName, wallets_tempo.address FROM wallets_tempo INNER JOIN payments ON payments.idWallet = wallets_tempo.id INNER JOIN wallets_by_campaign ON wallets_by_campaign.idWalletByCampaign = wallets_tempo.idCampaign WHERE wallets_tempo.id = "%s"', $_GET['idWallet']);
+        $datosFinancieros = Yii::app()->db->createCommand($sqldatosFinancieros)->queryAll();
+        $datosFinancieros = $datosFinancieros[0];
+
+
+        $this->render('wallet',
+            [
+                'porcentaje_recuperacion' => $recuperacion,
+                'status' => $estados,
+                'idWallet' => $_GET['idWallet'],
+                'model' => $deudor,
+                'paymentTypes' => $pagos,
+                'actions' => $acciones,
+                'datosFinancieros' => $datosFinancieros,
+                'idAdviser' => $user->idAdviser,
+                'tarea' => $tarea,
+                '_asesores' => $asesores
+            ]
         );
     }
+
+    function setHeader()
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
+    }
+
+    function apiResponse($data)
+    {
+        $this->setHeader();
+        echo json_encode($data);
+    }
+
+    // Actualizar estados de la hoja de vida del deudor
+    function actionUpdateStatus ()
+    {
+        $sql = sprintf('UPDATE wallets_tempo SET idStatus = "%s", updateAt = NOW() WHERE id = "%s"', $_POST['idStatus'], $_POST['id']);
+        $res = Yii::app()->db->createCommand($sql)->execute();
+        $this->apiResponse($res);
+    }
+
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    //**************************************************************************************
+    
 
     /**
      * This is the action to handle external exceptions.
@@ -479,7 +614,11 @@ class WalletController extends GxController {
         $model = Wallets::model()->with('agendases')->findByPk($idWallet);
 
         $modelManagment = Management::model()->findAllByAttributes(array("idWallet"=>$idWallet));
-        $modelWallet = Wallets::model()->findByPk($idWallet);
+        // $modelWallet = Wallets::model()->findByPk($idWallet);
+
+        $sqlModelWallet = sprintf("SELECT legalName, (SELECT name FROM advisers WHERE idAdviser = wallets_tempo.idAdviser) AS asesor FROM wallets_tempo WHERE id = '%s'", $idWallet);
+        $modelWallet = Yii::app()->db->createCommand($sqlModelWallet)->queryAll();
+        $modelWallet = $modelWallet[0];
 
         $tr = "";
         $color = "#E0E0E0";
@@ -522,7 +661,7 @@ class WalletController extends GxController {
         // echo "<pre>";
         // print_r($model->agendases);
         // die();
-        $encabezado = $this->headerPdf("<table><tr><td>Asesor: ". $modelManagment[0]->asesor . "</td><td>Cliente: " . $modelWallet->legalName . "</td></tr></table>");
+        $encabezado = $this->headerPdf("<table><tr><td>Asesor: ". $modelWallet['asesor'] . "</td><td>Cliente: " . $modelWallet['legalName'] . "</td></tr></table>");
         
         $pdf = Yii::createComponent('application.extensions.tcpdf.ETcPdf','P', 'cm', 'A4', true, 'UTF-8');
         $pdf->setPageUnit('pt');
@@ -659,26 +798,18 @@ class WalletController extends GxController {
 
     public function actionSaveFinantial(){
 
-        $idWallet    = $_REQUEST['idWallet'];
-        $idAdviser   = $_REQUEST['idAdviser'];
-        $negotiation = $_REQUEST['negotiation'];
-        $vendorEmail = $_REQUEST['vendorEmail'];
-        $vendorName  = $_REQUEST['vendorName'];
-        $vendorPhone = $_REQUEST['vendorPhone'];        
+        $sql = sprintf('UPDATE wallets_tempo SET negotiation = "%s", vendorEmail = "%s", vendorName = "%s", vendorPhone = "%s", updateAt = NOW() WHERE id = "%s"', 
+            $_REQUEST['negotiation'],
+            $_REQUEST['vendorEmail'],
+            $_REQUEST['vendorName'],
+            $_REQUEST['vendorPhone'],        
+            $_REQUEST['idWallet']
+        );
 
-        $date = new Datetime();
 
-        $model = Wallets::model()->findByPk($idWallet);
-
-        $model->negotiation = $negotiation;
-        $model->vendorEmail = $vendorEmail;
-        $model->vendorName  = $vendorName;
-        $model->vendorPhone = $vendorPhone;
-        $model->dUpdate     = $date->format('Y-m-d H:i:s');
-
-        if(!$model->save()){                
+        if(!Yii::app()->db->createCommand($sql)->execute()){                
             Yii::log("Error Wallet", "error", "actionSaveFinantial");
-            Yii::log("ERROR DB:".$model->getErrors(), "error", "actionSaveFinantial");
+            // Yii::log("ERROR DB:".$model->getErrors(), "error", "actionSaveFinantial");
         }else{
             Yii::log("Save:", "error", "actionSaveFinantial");
             Yii::app()->user->setFlash('success', "Registros actualizados con éxito");
@@ -763,5 +894,20 @@ class WalletController extends GxController {
                         <h1> ".$textHeader."</h1>
                         ";
 
+    }
+
+    /**
+     * Consultar estado de la deuda
+     */
+    public function actionConsultar_obligacion ($id) 
+    {
+
+        $model = Viewlistdebtors::model()->find($id);
+        $session['idioma'] = 1;
+        return $this->renderPartial('deudor', [
+            'session' => $session,
+            'deudor' => $model,
+            'iniciales' => 'WI'
+        ]);
     }
 }

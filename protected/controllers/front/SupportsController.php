@@ -117,8 +117,8 @@ class SupportsController extends GxController {
             $this->redirect(Yii::app()->session['userView'.$current_user.'returnURL']);
         }
         $current_user=Yii::app()->user->id;
-        $this->redirect(Yii::app()->session['userView'.$current_user.'returnURL']); 
-        	
+        echo Yii::app()->user->id;
+        // $this->redirect(Yii::app()->session['userView'.$current_user.'returnURL']); 
 	}
 
     public function actionGetFile(){

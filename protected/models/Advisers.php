@@ -161,11 +161,30 @@ class Advisers extends AdvisersBase
 	// Obtener el listado de asesores que se muestra al administrador
 	public static function getAssesores()
 	{
-		$sql = "SELECT idAdviser, name, email, active, parentAdviser,
+		/*$sql = "SELECT idAdviser, name, email, active, parentAdviser,
 			(SELECT COUNT(idCampaign) FROM wallets_has_campaigns 
 			WHERE idWallet IN  (SELECT idWallet FROM wallets WHERE idAdviser = a.idAdviser) GROUP BY idCampaign) AS num_camapanas
 			FROM advisers a
-			WHERE idAuthAssignment IN (SELECT idAuthAssignment FROM authassignment WHERE itemname LIKE '%asesor%')";
+			WHERE idAuthAssignment IN (SELECT idAuthAssignment FROM authassignment WHERE itemname LIKE '%asesor%')";*/
+		$sql = "SELECT 
+				advisers.parentAdviser,
+				advisers.name,
+				advisers.email,
+				advisers.active,
+				advisers.idAuthAssignment,
+				COUNT(wallets_by_campaign.IdCampaign) AS num_camapanas
+				FROM
+				advisers
+				LEFT OUTER JOIN authassignment ON (advisers.idAuthAssignment = authassignment.idAuthAssignment)
+				LEFT OUTER JOIN wallets_by_campaign ON (advisers.idAdviser = wallets_by_campaign.idAdviser)
+				WHERE
+				authassignment.itemname LIKE '%asesor%'
+				GROUP BY
+				advisers.parentAdviser,
+				advisers.name,
+				advisers.email,
+				advisers.active,
+				advisers.idAuthAssignment";	
 
 		if(isset($_POST['field']) && $_POST['field'] != '') {
 			$sql .= sprintf(" ORDER BY %s %s", $_POST['field'], $_POST['orderBy']);

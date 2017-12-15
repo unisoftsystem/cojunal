@@ -1,0 +1,6 @@
+sftp-config.json
+/vendor/
+vue-components/**/node_modules/*
+.gitignore
+webclient/node_modules/*
+webclient/.eslintrc.js

@@ -35,8 +35,9 @@
 		background-color: rgba(205, 220, 57, 0.2);
 	}
 
-	.valrecaudos{
-		background-color: rgba(205, 150, 250, 0.2);
+	.anteriores{
+		background-color: #D8D8D8;
+		color:#000;
 	}
 </style>
 
@@ -166,8 +167,8 @@
 			</span>-->
 			<span>
 				Valor total recaudado:
-				<b v-if="recaudado" class="costo">{{ formatPrice(parseFloat(val_payments) + parseFloat(valores_anterior)) }}</b>
-				<b class="costo">{{recaudado2}} </b>
+				<b v-if="recaudado" class="">{{ formatPrice(parseFloat(val_payments) + parseFloat(valores_anterior)) }}</b>
+				<b class="">{{recaudado2}} </b>
 				<b v-if="!recaudado" class="costo">0</b>
 			</span>
 <br><br>
@@ -178,7 +179,7 @@
 
 			<span>
 				Recaudos anteriores:			
-				<b class="costo"> {{ formatPrice(parseFloat(valores_anterior)) }}</b>				
+				<b class="anteriores"> {{ formatPrice(parseFloat(valores_anterior)) }}</b>				
 			</span>
 
 		</div>

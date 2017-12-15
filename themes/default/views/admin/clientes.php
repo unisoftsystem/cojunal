@@ -1,5 +1,5 @@
-<link href="<?php 
-	echo Yii::app()->baseUrl.'/assets/site/css/profile_admin/usuarios.css'; ?>" 
+<link href="<?php
+	echo Yii::app()->baseUrl.'/assets/site/css/profile_admin/usuarios.css'; ?>"
 	rel="stylesheet" type="text/css" />
 
 <div class="cont_home" id="usuarios">
@@ -11,7 +11,7 @@
 						<li class="tab"><a href="#clientes" class="active">Clientes</a></li>
 						<li class="tab"><a href="#formulario">Agregar cliente</a></li>
 						<li class="tab"><a href="#remisionar">Orden de servicios</a></li>
-						<li class="tab"><a href="#remisiones">Historial Orden de servicios</a></li>
+						<li class="tab"><a href="#remisiones">Historial de ordenes de servicio</a></li>
 					</ul>
 				</div>
 

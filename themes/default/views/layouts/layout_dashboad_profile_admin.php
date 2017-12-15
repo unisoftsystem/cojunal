@@ -40,17 +40,17 @@ $session = Yii::app()->session;
 
     <header>
       <div class="row">
-        <a href="#" data-activates="nav-mobile" class="nav_movile top-nav hide-on-large-only">    
+        <a href="#" data-activates="nav-mobile" class="nav_movile top-nav hide-on-large-only">
           <div class="burger"> <ul> <li></li> <li></li> <li></li> </ul></div>
         </a>
         <a href="carter.php" class="logo animated fadeInLeft">
           <img src="<?php echo Yii::app()->baseUrl; ?>/assets/img/logo.png" alt="">
-        </a>       
-      </div>  
+        </a>
+      </div>
     </header>
 
     <nav id="nav-mobile" class="side-nav fixed">
-      <div class="bg_profile">              
+      <div class="bg_profile">
         <a href="#">
           <div class="user_log responsive-img" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/assets/img/user/1.jpg');">
           </div>
@@ -80,7 +80,7 @@ $session = Yii::app()->session;
           </a>
         </li>
         <li>
-          <a href="" class="waves-effect waves-light">
+          <a href="<?php echo Yii::app()->baseUrl.'/admin/cartera' ?>" class="waves-effect waves-light">
             <i class="fa fa-home" aria-hidden="true"></i> Cartera
           </a>
         </li>
@@ -115,13 +115,14 @@ $session = Yii::app()->session;
           <a href="http://www.imaginamos.com" target="_blank">Diseño web: <span id="ahorranito2"></span> Imagin<span>a</span>mos.com</a>
         </div>
         </div>
-        <div class="clear"></div>  
+        <div class="clear"></div>
       </footer>
     </main>
 
   </section>
-<?php 
+<?php
   require("modal_wallet.php");
+  require("modal_graficos_cliente.php");
   require( realpath('./') . "/themes/default/views/admin/campana/modal_states.php");
 ?>
 
@@ -133,7 +134,7 @@ $session = Yii::app()->session;
     <script src="assets/js/app.js"></script> -->
     <script src="<?php echo Yii::app()->baseUrl;?>/assets/js/app.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    </main>    
+    </main>
     <!--Fin Contenidos Sitio-->
 
 </section><!--Content_all-->

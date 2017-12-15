@@ -1,0 +1,28 @@
+{
+  "name": "model-component",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "“Wilmar <“wilmar.ibg@gmail.com”>",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^1.0.1",
+    "gulp-html2string": "^0.1.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-string-replace": "^0.4.0",
+    "gulp-sync": "^0.1.4",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uglifycss": "^1.0.8",
+    "inline-html": "^0.2.4",
+    "run-sequence": "^2.2.0"
+  }
+}

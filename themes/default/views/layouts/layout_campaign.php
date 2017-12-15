@@ -79,6 +79,7 @@ switch (count($nameSeparete)) {
 
   </style>
   <?php require 'javascriptPrototipesUtilities.php' ?>
+  <link rel="stylesheet" href="http://cojunal.com/plataforma/beta/assets/site/css/profile_admin/usuarios.css">
 </head>
 
 <body>
@@ -162,7 +163,21 @@ switch (count($nameSeparete)) {
 		<script src="assets/js/lib/plugins.js"></script>
 		<script src="assets/js/app.js"></script> -->
 		<script src="<?php echo Yii::app()->baseUrl;?>/assets/js/app.min.js"></script>
-		<script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js'></script>
+    <script src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'></script>
+    <script src='https://cdn.datatables.net/1.10.16/js/dataTables.foundation.min.js'></script>
+    <script src='https://cdn.datatables.net/buttons/1.5.0/js/dataTables.buttons.min.js'></script>
+    <script src='//cdn.datatables.net/buttons/1.5.0/js/buttons.flash.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js'></script>
+    <script src='//cdn.datatables.net/buttons/1.5.0/js/buttons.html5.min.js'></script>
+    <script src='//cdn.datatables.net/buttons/1.5.0/js/buttons.print.min.js'></script>
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.0/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.foundation.min.css" />
+
    	</main>    
     <!--Fin Contenidos Sitio-->
 

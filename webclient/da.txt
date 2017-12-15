@@ -1,0 +1,5 @@
+Filtros.
+
+al dar click en un cliente, le damos click, se despliega el acordeon los datos
+
+Pr5dE14kFK2Z

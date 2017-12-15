@@ -112,149 +112,159 @@ class DashboardController extends Controller {
         $user = $sesion['cojunal'];
         $idAdviser = $user->idAdviser;
 
+
         $modelAuthAssignment = AuthAssignment::model()->findByPk($user->idAuthAssignment);
 
-        //print_r($modelAuthAssignment);
+        // if($modelAuthAssignment->itemname == "Asesor"){
+        //     $whereQs = 'idCampaign in (select idCampaign from wallets_has_campaigns where idCampaign in (Select idCampaign from `advisers_campaigns` where idAdvisers = '.$idAdviser.'))';
+        //     $whereCommands= 'idAdvisers='.$idAdviser;
+        //     $model = Yii::app()->db->createCommand()
+        //             ->select('*')
+        //             ->from('viewlistdebtors v')
+        //             ->join('advisers_campaigns ac', 'ac.idCampaign = v.idCampaign')
+        //             ->where($whereCommands)
+        //             ->order('validThrough')
+        //             ->queryAll();
 
-        if($modelAuthAssignment->itemname == "Asesor"){
-            $whereQs = 'idCampaign in (select idCampaign from wallets_has_campaigns where idCampaign in (Select idCampaign from `advisers_campaigns` where idAdvisers = '.$idAdviser.'))';
-            $whereCommands= 'idAdvisers='.$idAdviser;
-            $model = Yii::app()->db->createCommand()
-                    ->select('*')
-                    ->from('viewlistdebtors v')
-                    ->join('advisers_campaigns ac', 'ac.idCampaign = v.idCampaign')
-                    ->where($whereCommands)
-                    ->order('validThrough')
-                    ->queryAll();
+        // }else {
+        //     $whereCommands= '';
+        //     $whereQs = '';
+        //     $model = Yii::app()->db->createCommand()
+        //             ->select('*')
+        //             ->from('viewlistdebtors v')
+        //             ->order('validThrough')
+        //             ->queryAll();
 
-        }else {
-            $whereCommands= '';
-            $whereQs = '';
-            $model = Yii::app()->db->createCommand()
-                    ->select('*')
-                    ->from('viewlistdebtors v')
-                    ->order('validThrough')
-                    ->queryAll();
+        // }
 
-        }
-
-
-
-
-
-
-
-        // $model = Viewlistdebtors::model()->with(array(
-        //        'advisers_campaigns','advisers_campaigns.idAdvisers'=> array(
-        //             'select' => false,
-        //             'condition' => 'idAdvisers='.$idAdviser,
-        //         ) ,
-        //     ))->findAll(array('order'=>'validThrough', ''));
+        // // $model = Viewlistdebtors::model()->with(array(
+        // //        'advisers_campaigns','advisers_campaigns.idAdvisers'=> array(
+        // //             'select' => false,
+        // //             'condition' => 'idAdvisers='.$idAdviser,
+        // //         ) ,
+        // //     ))->findAll(array('order'=>'validThrough', ''));
 
 
-        $command=Yii::app()->db->createCommand();
-        $command->select('sum(capitalValue)');
-        $command->from('viewlistdebtors v');
-        if($modelAuthAssignment->itemname == "Asesor"){
-            $command->join('advisers_campaigns ac', 'ac.idCampaign = v.idCampaign');
-            $command->where($whereCommands);
-        }
-        //$command->where('target_product_id=:id', array(':id'=>$id));
-        $valueUnity = $command->queryScalar();
+        // $command=Yii::app()->db->createCommand();
+        // $command->select('sum(capitalValue)');
+        // $command->from('viewlistdebtors v');
+        // if($modelAuthAssignment->itemname == "Asesor"){
+        //     $command->join('advisers_campaigns ac', 'ac.idCampaign = v.idCampaign');
+        //     $command->where($whereCommands);
+        // }
+        // //$command->where('target_product_id=:id', array(':id'=>$id));
+        // $valueUnity = $command->queryScalar();
 
-        $command=Yii::app()->db->createCommand();
-        $command->select('(sum(currentDebt)*100)/sum(capitalValue)');
-        $command->from('viewlistdebtors v');
-        if($modelAuthAssignment->itemname == "Asesor"){
-            $command->join('advisers_campaigns ac', 'ac.idCampaign = v.idCampaign');
-            $command->where($whereCommands);
-        }
-        // $command->where('target_product_id=:id', array(':id'=>$id));
-        $recover = $command->queryScalar();
-        setlocale(LC_MONETARY, "en_US");
+        // $command=Yii::app()->db->createCommand();
+        // $command->select('(sum(currentDebt)*100)/sum(capitalValue)');
+        // $command->from('viewlistdebtors v');
+        // if($modelAuthAssignment->itemname == "Asesor"){
+        //     $command->join('advisers_campaigns ac', 'ac.idCampaign = v.idCampaign');
+        //     $command->where($whereCommands);
+        // }
+        // // $command->where('target_product_id=:id', array(':id'=>$id));
+        // $recover = $command->queryScalar();
+        // setlocale(LC_MONETARY, "en_US");
 
-        // Quadrant 1
-        $q = Yii::app()->db->createCommand();
-        $q->select('max(DATEDIFF(CURRENT_DATE, validThrough))');
-        $q->from('q1');
-        if($modelAuthAssignment->itemname == "Asesor"){
-            $q->where($whereQs);
-        }
-        $q1Days = $q->queryScalar();
-        $q = Yii::app()->db->createCommand();
-        $q->select('sum(capitalValue)');
-        $q->from('q1');
-        if($modelAuthAssignment->itemname == "Asesor")
-            $q->where($whereQs);
-        // $q1Value = money_format('%n',$q->queryScalar());
-        $q1Value = "$ ".number_format($q->queryScalar(), 2, ',', '.');
+        // // Quadrant 1
+        // $q = Yii::app()->db->createCommand();
+        // $q->select('max(DATEDIFF(CURRENT_DATE, validThrough))');
+        // $q->from('q1');
+        // if($modelAuthAssignment->itemname == "Asesor"){
+        //     $q->where($whereQs);
+        // }
+        // $q1Days = $q->queryScalar();
+        // $q = Yii::app()->db->createCommand();
+        // $q->select('sum(capitalValue)');
+        // $q->from('q1');
+        // if($modelAuthAssignment->itemname == "Asesor")
+        //     $q->where($whereQs);
+        // // $q1Value = money_format('%n',$q->queryScalar());
+        // $q1Value = "$ ".number_format($q->queryScalar(), 2, ',', '.');
 
-        // Quadrant 2
-        $q = Yii::app()->db->createCommand();
-        $q->select('max(DATEDIFF(CURRENT_DATE, validThrough))');
-        $q->from('q2');
-        if($modelAuthAssignment->itemname == "Asesor")
-            $q->where($whereQs);
-        $q2Days = $q->queryScalar();
-        $q = Yii::app()->db->createCommand();
-        $q->select('sum(capitalValue)');
-        $q->from('q2');
-        if($modelAuthAssignment->itemname == "Asesor")
-            $q->where($whereQs);
-        // $q2Value = money_format('%n',$q->queryScalar());
-        $q2Value = "$ ".number_format($q->queryScalar(), 2, ',', '.');
+        // // Quadrant 2
+        // $q = Yii::app()->db->createCommand();
+        // $q->select('max(DATEDIFF(CURRENT_DATE, validThrough))');
+        // $q->from('q2');
+        // if($modelAuthAssignment->itemname == "Asesor")
+        //     $q->where($whereQs);
+        // $q2Days = $q->queryScalar();
+        // $q = Yii::app()->db->createCommand();
+        // $q->select('sum(capitalValue)');
+        // $q->from('q2');
+        // if($modelAuthAssignment->itemname == "Asesor")
+        //     $q->where($whereQs);
+        // // $q2Value = money_format('%n',$q->queryScalar());
+        // $q2Value = "$ ".number_format($q->queryScalar(), 2, ',', '.');
 
-        // Quadrant 3
-        $q = Yii::app()->db->createCommand();
-        $q->select('max(DATEDIFF(CURRENT_DATE, validThrough))');
-        $q->from('q3');
-        if($modelAuthAssignment->itemname == "Asesor")
-            $q->where($whereQs);
-        $q3Days = $q->queryScalar();
-        $q = Yii::app()->db->createCommand();
-        $q->select('sum(capitalValue)');
-        $q->from('q3');
-        if($modelAuthAssignment->itemname == "Asesor")
-            $q->where($whereQs);
-        // $q3Value = money_format('%n',$q->queryScalar());
-        $q3Value = "$ ".number_format($q->queryScalar(), 2, ',', '.');
+        // // Quadrant 3
+        // $q = Yii::app()->db->createCommand();
+        // $q->select('max(DATEDIFF(CURRENT_DATE, validThrough))');
+        // $q->from('q3');
+        // if($modelAuthAssignment->itemname == "Asesor")
+        //     $q->where($whereQs);
+        // $q3Days = $q->queryScalar();
+        // $q = Yii::app()->db->createCommand();
+        // $q->select('sum(capitalValue)');
+        // $q->from('q3');
+        // if($modelAuthAssignment->itemname == "Asesor")
+        //     $q->where($whereQs);
+        // // $q3Value = money_format('%n',$q->queryScalar());
+        // $q3Value = "$ ".number_format($q->queryScalar(), 2, ',', '.');
 
-        // Quadrant 4
-        $q = Yii::app()->db->createCommand();
-        $q->select('max(DATEDIFF(CURRENT_DATE, validThrough))');
-        $q->from('q4');
-        if($modelAuthAssignment->itemname == "Asesor")
-            $q->where($whereQs);
-        $q4Days = $q->queryScalar();
-        $q = Yii::app()->db->createCommand();
-        $q->select('sum(capitalValue)');
-        $q->from('q4');
-        if($modelAuthAssignment->itemname == "Asesor")
-            $q->where($whereQs);
-        // $q4Value = money_format('%n',$q->queryScalar());
-        $q4Value = "$ ".number_format($q->queryScalar(), 2, ',', '.');
+        // // Quadrant 4
+        // $q = Yii::app()->db->createCommand();
+        // $q->select('max(DATEDIFF(CURRENT_DATE, validThrough))');
+        // $q->from('q4');
+        // if($modelAuthAssignment->itemname == "Asesor")
+        //     $q->where($whereQs);
+        // $q4Days = $q->queryScalar();
+        // $q = Yii::app()->db->createCommand();
+        // $q->select('sum(capitalValue)');
+        // $q->from('q4');
+        // if($modelAuthAssignment->itemname == "Asesor")
+        //     $q->where($whereQs);
+        // // $q4Value = money_format('%n',$q->queryScalar());
+        // $q4Value = "$ ".number_format($q->queryScalar(), 2, ',', '.');
 
-        $quadrants = array(
-                'q1' => array(
-                        'days' => $q1Days,
-                        'value' => $q1Value
-                    ),
-                'q2' => array(
-                        'days' => $q2Days,
-                        'value' => $q2Value
-                    ),
-                'q3' => array(
-                        'days' => $q3Days,
-                        'value' => $q3Value
-                    ),
-                'q4' => array(
-                        'days' => $q4Days,
-                        'value' => $q4Value
-                    ),
-            );
+        // $quadrants = array(
+        //         'q1' => array(
+        //                 'days' => $q1Days,
+        //                 'value' => $q1Value
+        //             ),
+        //         'q2' => array(
+        //                 'days' => $q2Days,
+        //                 'value' => $q2Value
+        //             ),
+        //         'q3' => array(
+        //                 'days' => $q3Days,
+        //                 'value' => $q3Value
+        //             ),
+        //         'q4' => array(
+        //                 'days' => $q4Days,
+        //                 'value' => $q4Value
+        //             ),
+        //     );
 
         // $this->render('dashboard',array('debtorsCount'=>count($model), 'valueUnity'=>money_format('%n',($valueUnity)), 'recover'=>$recover, 'quadrants'=>$quadrants));
-        $this->render('dashboard',array('debtorsCount'=>count($model), 'valueUnity'=>number_format($valueUnity, 2, ',', ' '), 'recover'=>$recover, 'quadrants'=>$quadrants));
+        // $this->render('dashboard',array('debtorsCount'=>count($model), 'valueUnity'=>number_format($valueUnity, 2, ',', ' '), 'recover'=>$recover, 'quadrants'=>$quadrants));
+        
+        $sql = 'SELECT wallets_tempo.*, (wallets_tempo.capitalValue - SUM(value)) AS saldo, wallets_by_campaign.campaignName AS campana, DATEDIFF(NOW(), wallets_by_campaign.createAt) AS edad, status.description AS status FROM wallets_tempo LEFT JOIN status ON status.idStatus = wallets_tempo.idStatus INNER JOIN payments ON payments.idWallet = wallets_tempo.id INNER JOIN wallets_by_campaign ON wallets_by_campaign.idWalletByCampaign = wallets_tempo.idCampaign WHERE wallets_tempo.idAdviser = '.$user->idAdviser.' GROUP BY wallets_by_campaign.campaignName';
+        
+        $res = Yii::app()->db->createCommand($sql)->queryAll();
+
+        $sqlRecuperacion = 'SELECT ((SUM(payments.value) / SUM(wallets_tempo.capitalValue)) * 100) AS porcentaje FROM payments INNER JOIN wallets_tempo ON wallets_tempo.id = payments.idPayment WHERE payments.idAdviser = '.$user->idAdviser;
+
+        $recuperacion = Yii::app()->db->createCommand($sqlRecuperacion)->queryAll();
+
+        // $this->apiResponse($res);
+        $this->layout = 'layout_secure';
+        $this->render('dashboard_asesor', array(
+            'deudores' => $res,
+            'porcentaje_recuperacion' => $recuperacion
+            )
+        );
+        // $this->render('dashboard');
     }
 
     /**
@@ -476,6 +486,9 @@ class DashboardController extends Controller {
         $where = 'idCampaign=' .$campaign->idCampaign;
 
         $model = Viewlistdebtors::model()->findAll($query);
+
+        $stadosAndSaldos = $model;
+
         $command=Yii::app()->db->createCommand();
         $command->select('sum(capitalValue)');
         $command->from('viewlistdebtors');
@@ -557,6 +570,7 @@ class DashboardController extends Controller {
             );
 
         $data = array(
+            'stadosAndSaldos' => $stadosAndSaldos, 
             'debtorsCount'=>count($model), 
             'valueUnity'=>money_format('%n',($valueUnity)), 
             'recover'=>$recover, 

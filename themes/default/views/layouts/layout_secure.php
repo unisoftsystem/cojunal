@@ -152,8 +152,9 @@ switch (count($nameSeparete)) {
 		<!-- <script src="assets/js/lib/materialize.js"></script>
 		<script src="assets/js/lib/plugins.js"></script>
 		<script src="assets/js/app.js"></script> -->
-		<script src="<?php echo Yii::app()->baseUrl;?>/assets/js/app.min.js"></script>
-		<script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="<?php echo Yii::app()->baseUrl;?>/assets/js/app.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
    	</main>    
     <!--Fin Contenidos Sitio-->
 

@@ -39,6 +39,7 @@ return CMap::mergeArray(
                         'logout' => 'dashboard/logout',
                         'changeIdioma' => 'site/changeIdioma',
                         'wallet/search/<idWallet>' => 'wallet/search',
+                        'wallet/search/<idWallet>/<idTarea>' => 'wallet/search',
                         'dashboard/updateType/<idWallet>/<type>' => 'dashboard/updateType',
                         'wallet/getEffects/<idAction>'=>'wallet/getEffects',
                         'wallet/getCities/<idDepartment>'=>'wallet/getCities',

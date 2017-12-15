@@ -1,0 +1,14 @@
+{
+    "name": "root/beta",
+    "authors": [
+        {
+            "name": "Wilmar Ibarguen M.",
+            "email": "wilmar.ibg@gmail.com"
+        }
+    ],
+    "require": {
+        "box/spout": "^2.7",
+        "mpdf/mpdf": "^6.1",
+        "windwalker/crypt": "~3.0"
+    }
+}

@@ -2373,7 +2373,7 @@ class CActiveRecordMetaData
 
 	private $_modelClassName;
 
-	/**
+	/*
 	 * Constructor.
 	 * @param CActiveRecord $model the model instance
 	 * @throws CDbException if specified table for active record class cannot be found in the database

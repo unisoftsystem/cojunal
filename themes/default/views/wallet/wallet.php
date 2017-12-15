@@ -1,26 +1,26 @@
 <?php 
-  $whc = WalletsHasCampaigns::model()->findByAttributes(array("idWallet"=>$model->idWallet));
-  $campaign = Campaigns::model()->findByPk($whc->idCampaign);
-  $current_user=Yii::app()->user->id;
-  Yii::app()->session['userView'.$current_user.'returnURL']=Yii::app()->request->Url;
-  Yii::app()->session['userView'.$current_user.'idWallet']=$model->idWallet;
-  setlocale(LC_MONETARY, "en_US");
+  // $whc = WalletsHasCampaigns::model()->findByAttributes(array("idWallet"=>$idWallet));
+  // $campaign = Campaigns::model()->findByPk($whc->idCampaign);
+  // $current_user=Yii::app()->user->id;
+  // Yii::app()->session['userView'.$current_user.'returnURL']=Yii::app()->request->Url;
+  // Yii::app()->session['userView'.$current_user.'idWallet']=$idWallet;
+  // setlocale(LC_MONETARY, "en_US");
   // echo "<pre>";
   // print_r($campaign);
-  $name =  WalletsHasCampaigns::model()->with("idCampaign0")->findByAttributes(array("idWallet"=>$model->idWallet))->idCampaign0->contactName;
-  $nameSeparete = explode(" ", $name);
+  // $name =  WalletsHasCampaigns::model()->with("idCampaign0")->findByAttributes(array("idWallet"=>$idWallet))->idCampaign0->contactName;
+  // $nameSeparete = explode(" ", $name);
  
-  switch (count($nameSeparete)) {
-  case 1:
-    $iniciales = substr($name, 0,1) . substr($name, 1,1);
-  break;
-  case 3 :
-    $iniciales = substr($nameSeparete[0], 0,1) . substr($nameSeparete[2], 0,1);
-  break;
-  default:
-    $iniciales = substr($nameSeparete[0], 0,1). substr($nameSeparete[1], 0,1);
-  break;
-}
+  // switch (count($nameSeparete)) {
+  //   case 1:
+  //     $iniciales = substr($name, 0,1) . substr($name, 1,1);
+  //   break;
+  //   case 3 :
+  //     $iniciales = substr($nameSeparete[0], 0,1) . substr($nameSeparete[2], 0,1);
+  //   break;
+  //   default:
+  //     $iniciales = substr($nameSeparete[0], 0,1). substr($nameSeparete[1], 0,1);
+  //   break;
+  // }
 ?>
 <section class="cont_home" wim="90">       
         <section class="conten_inicial">
@@ -30,40 +30,89 @@
               <!--Datos iniciales-->
               <section class="panelBG wow fadeInUp m_b_20">
                 <div class="tittle_head">
-                  <h2><table><tr><td><?= $model->legalName; ?><?= $current_user; ?></td><td><span style="text-align: right; float: right;"><b>Tiempo:</b> <span id ="timer"></span></span></td></tr></table> </h2>
+                  <h2><table><tr><td><?= $datosFinancieros['legalName']; ?><?= $idWallet; ?></td><td><span style="text-align: right; float: right;"><b>Tiempo:</b> <span id ="timer"></span></span></td></tr></table> </h2>
                 </div>
                 <div class="row block padd_v">
                   <div id="frmManagement" class="form_register formweb wow fadeIn" action="" method="">
+                    
+                    <?php if ($tarea && $idAdviser == $tarea['idAdviser']): ?>
+                      <fieldset class="large-12 medium-12 small-12 columns padding">
+                        <b style="font-weight: 400; font-size: 1.5rem; margin-bottom: 10px; padding-bottom: 10px; display: block;">Tarea: <?php echo $tarea['comment']; ?></b>
+                      </fieldset>
+                      <form id="updateTarea" method="POST" action="<?php echo Yii::app()->getBaseUrl(true); ?>/wallet/updateTareaAgenda">
+                        
+                        <fieldset class="large-12 medium-12 small-12 columns padding">
+                          <fieldset class="row block">
+                             <label>Registro de gestión</label>
+                            <textarea name="log"></textarea>
+                          </fieldset>
+                        </fieldset>
+
+                        <fieldset class="large-4 medium-4 small-12 columns padding">
+                          <fieldset class="row block">
+                            <input type="hidden" name="idAgenda" value="<?php echo $tarea['idAgenda'] ?>">
+                             <label>Estado</label>
+                             <select id="estado" name="completada">
+                              <option value="0" <?php echo $tarea['completada'] === '0' ? 'selected="true"' : ''; ?>>Pendiente</option>
+                              <option value="1" <?php echo $tarea['completada'] === '1' ? 'selected="true"' : ''; ?>>Completada</option>
+                            </select> 
+                          </fieldset>
+                        </fieldset>
+
+                        <fieldset class="large-4 medium-4 small-12 columns padding">
+                          <fieldset class="row block">
+                             <label>Reasignar fecha</label>
+                             <div class="fecha">
+                              <input type="date" class="calendar" id="readignar_idAdviser" name="idAdviser">
+                             </div>
+                          </fieldset>
+                        </fieldset>
+
+                        <fieldset class="large-4 medium-4 small-12 columns padding">
+                          <fieldset class="row block">
+                             <button style="margin-top: 15px;" class="btnb block waves-effect waves-light">GUARDAR</button>
+                          </fieldset>
+                        </fieldset>
+
+                      </form>
+                    <?php endif ?>
+
+                     <div class="clear"></div>
+                       <div class="padding">
+                         <div class="lineap"></div>
+                       </div> 
+                      <div class="clear"></div>
+
                      <fieldset class="large-8 medium-8 small-12 columns padding">
                        <div class="porcent_user">
                         <label>Porcentaje de recuperacion</label>                       
                         <div class="barra">
                           <?php
-                            $paymentAmount = 0;                            
-                            if (count($payments) > 0){ 
-                              foreach ($payments as $payment) {
-                                $paymentAmount += $payment->value;                              
-                              }
-                            }
-                            $recoveryPorc = ($paymentAmount * 100) / $model->capitalValue;                            
+                            // $paymentAmount = 0;                            
+                            // if (count($payments) > 0){ 
+                            //   foreach ($payments as $payment) {
+                            //     $paymentAmount += $payment->value;                              
+                            //   }
+                            // }
+                            // $recoveryPorc = ($paymentAmount * 100) / $model->capitalValue;                            
                           ?>
-                          <div class="porcent" style="width:<?= $recoveryPorc ?>%"></div><span><?= $recoveryPorc ?>%</span>                           
+                          <div class="porcent" style="width:<?= $porcentaje_recuperacion ?>%"></div><span><?= $porcentaje_recuperacion ?>%</span>                           
                         </div>                        
                        </div>
                      </fieldset>
                      <fieldset class="large-4 medium-4 small-12 columns padding">
                         <label>Estado por área de gestión</label>
-                        <select id="status" onchange="tipoEstatusChange(this);">
+                        <select id="status" onchange="tipoEstatusChange(this, '<?php echo $idWallet; ?>');">
                           <option value="">Seleccionar opción</option>
                           <?php  
                             foreach ($status as $stat) {
-                              if($model->idStatus == $stat->idStatus){
+                              if($model['idStatus'] == $stat['idStatus']){
                           ?>
-                            <option value="<?= $stat->idStatus; ?>" selected="selected" ><?= $stat->description; ?></option>
+                            <option value="<?= $stat['idStatus']; ?>" selected="selected" ><?= $stat['description']; ?></option>
                           <?php
                               }else{
                           ?>
-                            <option value="<?= $stat->idStatus; ?>" ><?= $stat->description; ?></option>
+                            <option value="<?= $stat['idStatus']; ?>" ><?= $stat['description']; ?></option>
                           <?php
                               }
                             }
@@ -85,7 +134,7 @@
                             <?php  
                             foreach ($paymentTypes as $paymentType) {
                             ?>
-                              <option value="<?= $paymentType->idPaymentType; ?>" ><?= $paymentType->paymentTypeName; ?></option>
+                              <option value="<?= $paymentType['idPaymentType']; ?>" ><?= $paymentType['paymentTypeName']; ?></option>
                             <?php
                                 }
                             ?>
@@ -115,7 +164,7 @@
                             <?php  
                             foreach ($actions as $action) {
                             ?>
-                              <option value="<?= $action->idAction; ?>" ><?= $action->actionName; ?></option>
+                              <option value="<?= $action['idAction']; ?>" ><?= $action['actionName']; ?></option>
                             <?php
                                 }
                             ?>
@@ -151,9 +200,9 @@
                                   <?php  
                                   foreach ($actions as $action) {
                                   ?>
-                                    <option value="<?= $action->idAction; ?>" ><?= $action->actionName; ?></option>
+                                    <option value="<? = $action['idAction']; ?>" ><?= $action['actionName']; ?></option>
                                   <?php
-                                      }
+                                    }
                                   ?>
                               </select> 
                             </fieldset>                            
@@ -199,31 +248,31 @@
                   <div class="row">  
                     <!--Tab 1-->
                     <?php                      
-                      $geoInfo = Treedistricts::model()->findByAttributes(array('idDistrict'=>$model->idDistrict));
-                      $geo = explode('-',$geoInfo);
-                      $district = $geo[2];
-                      $city = $geo[1];
-                      $department = $geo[0];
+                      // $geoInfo = Treedistricts::model()->findByAttributes(array('idDistrict'=>$model->idDistrict));
+                      // $geo = explode('-',$geoInfo);
+                      // $district = $geo[2];
+                      // $city = $geo[1];
+                      // $department = $geo[0];
                     ?>
                     <article id="datos_personales" class="block">
                       <form id="frmPersonalInfo" action="" class="formweb">
                         <fieldset class="large-6 medium-6 small-12 columns padding">
                           <label>Nombre / Razón Social</label>
-                          <input type="text" id="infoName" name="" placeholder="Juan Camilo Hernandez" value="<?= $model->legalName; ?>" disabled>
+                          <input type="text" id="infoName" name="" placeholder="Juan Camilo Hernandez" value="<?= $model['legalName']; ?>" disabled>
                           <label>Cédula / NIT</label>
-                          <input type="text" id="infoId" name="" placeholder="1099239292" value="<?= $model->idNumber; ?>" disabled>
-                          <!-- <input type="text" name="" placeholder="Cundinamarca" value="<?= $department; ?>"> -->
+                          <input type="text" id="infoId" name="" placeholder="1099239292" value="<?= $model['idNumber']; ?>" disabled>
+                          <!-- <input type="text" name="" placeholder="Cundinamarca" value="<?//= $department; ?>"> -->
                           <?php 
                             $cities=Cities::model()->findAll();                            
                           ?>
                           <label>Departamento</label>
-                          <!-- <input type="text" name="" placeholder="Bogotá" value="<?= $city; ?>"> -->
+                          <!-- <input type="text" name="" placeholder="Bogotá" value="<?//= $city; ?>"> -->
                           <select id="infoCity" disabled>
                             <?php 
                               if(count($cities)>0){
                                 foreach ($cities as $city) {
                             ?>
-                              <option value="<?= $city->idCity; ?>"><?= $city->name;?></option>
+                              <option value="<?php echo $city->idCity; ?>"><?php echo $city->name;?></option>
                             <?php
                                 }
                               }
@@ -245,16 +294,16 @@
                             ?>
                           </select>                       
                           <label>Campaña</label>
-                          <input type="text" disabled="true" name="" placeholder="<?= $campaign->name ?>" disabled>
+                          <input type="text" disabled="true" name="" placeholder="<?= $datosFinancieros['campaignName']; ?>" disabled>
                         </fieldset>
                         <fieldset class="large-6 medium-6 small-12 columns padding">
                           <label>Dirección</label>
-                          <input type="text" name="" id="infoAddress" placeholder="Carrera 20 # 23 -90" value="<?= $model->address; ?>" disabled>
+                          <input type="text" name="" id="infoAddress" placeholder="Carrera 20 # 23 -90" value="<?= $datosFinancieros['address']; ?>" disabled>
                           <?php 
                             $districts=Districts::model()->findAll();                            
                           ?>
                           <label>Ciudad</label>
-                          <!-- <input type="text" name="" placeholder="Chapinero" value="<?= $district; ?>"> -->
+                          <!-- <input type="text" name="" placeholder="Chapinero" value="<?//= $district; ?>"> -->
                           <select id="infoDistricts" disabled>
                             <?php 
                               if(count($districts)>0){
@@ -267,12 +316,12 @@
                             ?>
                           </select>
                           <label>Teléfono</label>
-                          <input type="text" name="" id="infoPhone" placeholder="301 030 20 30" value="<?= $model->phone; ?>" disabled>
+                          <input type="text" name="" id="infoPhone" placeholder="301 030 20 30" value="<?= $model['phone']; ?>" disabled>
                           <label>Correo Electrónico</label>
-                          <input type="text" name="" id="infoEmail" placeholder="hernande@claro.com" value="<?= $model->email; ?>" disabled>
+                          <input type="text" name="" id="infoEmail" placeholder="hernande@claro.com" value="<?= $model['email']; ?>" disabled>
                           <label>Código</label>
                           
-                          <input type="text" disabled="true" name="" placeholder="CJ-<?= $campaign->idCampaign ?>" disabled>
+                          <input type="text" disabled="true" name="" placeholder="CJ-<?= $datosFinancieros['idWalletByCampaign'] ?>" disabled>
                         </fieldset>
                         <div class="txt_right block padding">
                           <button id="btnSaveInfo" class="btnb waves-effect waves-light">GUARDAR</button>
@@ -288,7 +337,7 @@
                               <a id="btnNewPhone" class="modal_clic" href="#new_phone_modal"><i class="fa fa-plus" aria-hidden="true"></i> NUEVO TELÉFONO</a>
                             </div>
                             <?php 
-                              $demographicPhones = Demographics::model()->findAllByAttributes(array('idWallet'=>$model->idWallet,'idType'=>'1'));                              
+                              $demographicPhones = Demographics::model()->findAllByAttributes(array('idWallet'=>$idWallet,'idType'=>'1'));                              
                             ?>
                             <div class="clearfix respuesta">
                               <table class="bordered responsive-table">
@@ -334,7 +383,7 @@
                               <a id="btnNewReference" class="modal_clic" href="#new_referencia_modal"><i class="fa fa-plus" aria-hidden="true"></i> NUEVA REFERENCIA</a>
                             </div>
                             <?php 
-                              $demographicReferences = Demographics::model()->findAllByAttributes(array('idWallet'=>$model->idWallet,'idType'=>'2'));                              
+                              $demographicReferences = Demographics::model()->findAllByAttributes(array('idWallet'=>$idWallet,'idType'=>'2'));                              
                             ?>
                             <div class="clearfix respuesta">
                               <table class="bordered responsive-table">
@@ -381,7 +430,7 @@
                               <a id="btnNewEmail" class="modal_clic" href="#new_correo_modal"><i class="fa fa-plus" aria-hidden="true"></i> NUEVO CORREO</a>
                             </div>
                             <?php 
-                              $demographicEmail = Demographics::model()->findAllByAttributes(array('idWallet'=>$model->idWallet,'idType'=>'3'));                              
+                              $demographicEmail = Demographics::model()->findAllByAttributes(array('idWallet'=>$idWallet,'idType'=>'3'));                              
                             ?>
                             <div class="clearfix respuesta">
                               <table class="bordered responsive-table">
@@ -421,7 +470,7 @@
                               <a id="btnNewAddress" class="modal_clic" href="#new_address_modal"><i class="fa fa-plus" aria-hidden="true"></i> NUEVA DIRECCIÓN</a>
                             </div>
                             <?php 
-                              $demographicAddresses = Demographics::model()->findAllByAttributes(array('idWallet'=>$model->idWallet,'idType'=>'4'));                              
+                              $demographicAddresses = Demographics::model()->findAllByAttributes(array('idWallet'=>$idWallet,'idType'=>'4'));                              
                             ?>
                             <div class="clearfix respuesta">
                               <table class="bordered responsive-table">
@@ -452,8 +501,8 @@
                                     </td>
                                   </tr>
                                 <?php
-                                  }
-                                }
+                                   }
+                                 }
                                 ?>                                  
                                 </tbody>
                               </table>
@@ -472,7 +521,7 @@
                         </div>
                         <div class="row block padd_v">
                           <?php 
-                            $assets = Assets::model()->findAllByAttributes(array('idWallet'=>$model->idWallet));
+                            $assets = Assets::model()->findAllByAttributes(array('idWallet'=>$idWallet));
                           ?>
                           <ul class="listBien">
                             <?php
@@ -501,8 +550,8 @@
                               </div>                      
                             </li>
                             <?php
-                              }
-                            }
+                               }
+                             }
                             ?>                            
                           </ul>
                         </div>
@@ -515,7 +564,7 @@
                           <h2><i class="fa fa-file-text-o" aria-hidden="true"></i> SOPORTES <a href="#new_sporte_modal" class="modal_clic"><i class="fa fa-plus" aria-hidden="true"></i> NUEVO SOPORTE</a></h2>
                         </div>
                         <?php 
-                              $supports = Supports::model()->findAllByAttributes(array('idWallet'=>$model->idWallet));
+                              $supports = Supports::model()->findAllByAttributes(array('idWallet'=>$idWallet));
                         ?>
                         <div class="row block">
                           <table class="bordered responsive-table">
@@ -526,17 +575,17 @@
                               <td class="formweb">
                                   <select id="supportsSelect">
                                     <option value="0">Seleccionar opción</option>
-                                    <?php foreach ($supports as $support) {
+                                    <?php  foreach ($supports as $support) {
                                     ?>
                                     <option value="<?=$support->idsupports?>"><?=$support->fileName?></option>
-                                    <?php } ?>
+                                    <?php  } ?>
                                   </select>  
                               </td>
                             </thead id="tableSupports">
                             <tbody id="tableSupports">
                             <?php
-                              if(count($supports) > 0){ 
-                                foreach ($supports as $support) {
+                               if(count($supports) > 0){ 
+                                 foreach ($supports as $support) {
                             ?>
                               <tr>
                                 <td class="txt_center"><?= $support->fileName; ?></td>
@@ -544,7 +593,7 @@
                                 <td class="txt_center"><?= date("d/m/Y",strtotime($support->dFile)); ?></td>
                                 <td class="txt_center icon_table">
                                   <a href="<?= $support->file; ?>" class="inline padding tooltipped" data-position="top" data-delay="50" data-tooltip="Descargar"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                  <!--
+                                  
                                   <a href="#new_sporte_modal" 
                                      class="inline padding tooltipped editSoporte modal_clic" 
                                      data-position="top" 
@@ -555,14 +604,14 @@
                                      data-fileType="<?= $support->fileType; ?>"
                                      data-dFile="<?= $support->dFile; ?>">
                                      <i class="fa fa-trash" aria-hidden="true"></i></a>
-                                  -->
+                                  
                                   <a href="javascript:preguntar(<?=$support->idsupports?>)"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
                                 </td>
                               </tr>
                             <?php 
-                                }
-                              }
+                                 }
+                               }
                             ?>                              
                             </tbody>
                           </table>
@@ -576,12 +625,12 @@
                           <h2><i class="fa fa-comment-o" aria-hidden="true"></i> COMENTARIOS</h2>
                         </div>
                         <?php 
-                          $comments = Comments::model()->with('advisers')->findAllByAttributes(array('idWallet'=>$model->idWallet));                          
+                          $comments = Comments::model()->with('advisers')->findAllByAttributes(array('idWallet'=>$idWallet));                          
                         ?>
                         <div class="row block">
                           <?php
-                            if(count($comments) > 0){
-                              foreach ($comments as $comment) {
+                             if(count($comments) > 0){
+                               foreach ($comments as $comment) {
                           ?>
                             <article class="checkSite">
                             <input type="checkbox" <?= $comment->status==true?"checked" : "" ?> data-comment="<?= $comment->idComment ?>"  name="comentAproved<?= $comment->idComment?>" id="check<?= $comment->idComment?>" class="checkComment" onclick="updateComment(<?= $comment->idComment ?>)">
@@ -605,14 +654,14 @@
                               </span>
                               <div class="inline date">
                                 <?php 
-                                  $secs = time()-(60*60*24);
-                                  $diffTime = $secs - strtotime($comment->dCreation);
-                                  if(($diffTime/60/60/24) < 1){
-                                    $text="Hace menos de 1 día";
-                                  }else{                                  
-                                    $dias = floor($diffTime/60/60/24);
-                                    $text = "Hace ".$dias." día(s)";
-                                  }                                  
+                                   $secs = time()-(60*60*24);
+                                   $diffTime = $secs - strtotime($comment->dCreation);
+                                   if(($diffTime/60/60/24) < 1){
+                                     $text="Hace menos de 1 día";
+                                   }else{                                  
+                                     $dias = floor($diffTime/60/60/24);
+                                     $text = "Hace ".$dias." día(s)";
+                                   }                                  
                                 ?>
                                 <p><span><?= $text?></span></p>
                               </div>
@@ -620,8 +669,8 @@
                             </label>
                           </article>
                           <?php
-                            }
-                          }
+                             }
+                           }
                           ?>                                                                     
                         </div>
                       </section>
@@ -632,69 +681,69 @@
                       <form id="frmFinantial" action="" class="formweb">
                         <fieldset class="large-4 medium-12 small-12 columns padding">
                           <label>Saldo inicial</label>
-                          <input type="text" name="" placeholder="$ 100.000" value="$ <?= Yii::app()->format->formatNumber($model->capitalValue); ?>"  disabled>
+                          <input type="text" name="" placeholder="$ 100.000" value="$ <?= Yii::app()->format->formatNumber($datosFinancieros['capitalValue']); ?>"  disabled>
                           <?php 
-                            $interests = $model->interestsValue;
+                            // $interests = $model->interestsValue;
                           ?>
                           <label>Intereses</label>
-                          <input type="text" name="" placeholder="" value="$ <?= Yii::app()->format->formatNumber($interests); ?>" disabled>
+                          <input type="text" name="" placeholder="" value="$ <?= Yii::app()->format->formatNumber($datosFinancieros['intereses']); ?>" disabled>
                           <?php 
-                            $fee = $model->feeValue;
+                            // $fee = $model->feeValue;
                           ?>
                           <label>Honorarios</label>
-                          <input type="text" name="" placeholder="$ 3.000.000" value="$ <?= Yii::app()->format->formatNumber($fee); ?>" disabled>
+                          <input type="text" name="" placeholder="$ 3.000.000" value="$ <?= Yii::app()->format->formatNumber($datosFinancieros['honorarios']); ?>" disabled>
                           <?php 
-                            $saldoTotal = $model->capitalValue + $interests + $fee;
+                            // $saldoTotal = $model->capitalValue + $interests + $fee;
                           ?>
                           <label>Saldo total</label>                          
-                          <input type="text" name="" placeholder="$ 80.000" value="$ <?= Yii::app()->format->formatNumber($saldoTotal); ?>" disabled>
+                          <input type="text" name="" placeholder="$ 80.000" value="$ <?= Yii::app()->format->formatNumber($datosFinancieros['saldo_total']); ?>" disabled>
                           <?php 
-                            $saldoTotal = $model->capitalValue - $paymentAmount;
+                            // $saldoTotal = $model->capitalValue - $paymentAmount;
                           ?>
                           <label>Saldo en mora</label>
-                          <input type="text" name="" placeholder="$ 50.000" value="$ <?= Yii::app()->format->formatNumber($saldoTotal); ?>" disabled>
+                          <input type="text" name="" placeholder="$ 50.000" value="$ <?= Yii::app()->format->formatNumber($datosFinancieros['saldo_mora']); ?>" disabled>
                         </fieldset>
                         <fieldset class="large-4 medium-12 small-12 columns padding">
                           <label>Titulo valor</label>
-                          <input type="text" name="" placeholder="$ 299.999" value="$ <?= Yii::app()->format->formatNumber($model->titleValue); ?>" disabled>
+                          <input type="text" name="" placeholder="$ 299.999" value="$ <?= Yii::app()->format->formatNumber($datosFinancieros['titleValue']); ?>" disabled>
                           <label>Fecha de vencimiento</label>
-                          <input type="text" name="" placeholder="01/06/2016" value="<?= date("d/m/Y",strtotime($model->validThrough)); ?>" disabled>
+                          <input type="text" name="" placeholder="01/06/2016" value="<?= date("d/m/Y",strtotime($datosFinancieros['validThrough'])); ?>" disabled>
                           <?php
-                           $dStart = new DateTime('now');
-                           $dEnd  = new DateTime($model->validThrough);
-                           $dDiff = $dStart->diff($dEnd);
-                           $diff = (int)$dDiff->format("%r%a");
-                           if(($diff) < 1){
-                              $text= $dDiff->days." día(s)";
-                            }else{                                  
-                              $text = "0 días";
-                            }
+                           // $dStart = new DateTime('now');
+                           // $dEnd  = new DateTime($model->validThrough);
+                           // $dDiff = $dStart->diff($dEnd);
+                           // $diff = (int)$dDiff->format("%r%a");
+                           // if(($diff) < 1){
+                           //    $text= $dDiff->days." día(s)";
+                           //  }else{                                  
+                           //    $text = "0 días";
+                           //  }
                           ?>
                           <label>Dias de mora a la fecha</label>
-                          <input type="text" name="" placeholder="3 dias" value="<?= $text; ?>" disabled>
+                          <input type="text" name="" placeholder="3 dias" value="<?= $datosFinancieros['dias_mora']; ?>" disabled>
                           <label>Valor pagos realizados</label>
-                          <input type="text" name="" placeholder="$ 20.000" value="$ <?= Yii::app()->format->formatNumber($paymentAmount); ?>" disabled>
+                          <input type="text" name="" placeholder="$ 20.000" value="$ <?= Yii::app()->format->formatNumber($datosFinancieros['pagos']); ?>" disabled>
                           <?php 
-                            $lastPayment = Lastpayments::model()->findByAttributes(array('idWallet'=>$model->idWallet));
+                            // $lastPayment = Lastpayments::model()->findByAttributes(array('idWallet'=>$idWallet));
                           ?>
                           <label>Fecha de pago realizado</label>
                           <?php 
-                            if(count($lastPayment) >0){
+                            // if(count($lastPayment) >0){
                           ?>
-                            <input type="text" name="" placeholder=" 04/05/2016" value="<?= date("d/m/Y",strtotime($lastPayment->dPayment)); ?>" disabled>
-                          <?php }else{ ?>
-                            <input type="text" name="" placeholder=" 04/05/2016" disabled>
-                          <?php } ?>
+                            <input type="text" name="" placeholder=" 04/05/2016" value="<?= date("d/m/Y",strtotime($datosFinancieros['ultimo_pago'])); ?>" disabled>
+                          <?php // }else{ ?>
+                            <!-- <input type="text" name="" placeholder=" 04/05/2016" disabled> -->
+                          <?php // } ?>
                         </fieldset>
                         <fieldset class="large-4 medium-12 small-12 columns padding">
                           <label>Producto</label>
-                          <input type="text" name="" placeholder="" value="<?= $model->product; ?>" disabled>
+                          <input type="text" name="" placeholder="" value="<?= $datosFinancieros['product']; ?>" disabled>
                           <label>Número de cuenta</label>
-                          <input type="text" name="" placeholder="2009409029" value="<?= $model->accountNumber ; ?>" disabled>
+                          <input type="text" name="" placeholder="2009409029" value="<?= $datosFinancieros['accountNumber']; ?>" disabled>
                           <label>Fecha asignación</label>
-                          <input type="text" name="" placeholder="30/04/2016" value="<?= date("d/m/Y",strtotime($model->dAssigment)); ?>" disabled>                          
+                          <input type="text" name="" placeholder="30/04/2016" value="<?= date("d/m/Y",strtotime($datosFinancieros['fecha_asignacion'])); ?>" disabled>                          
                           <label><?=Yii::t("campaign","prescripcion")?></label>
-                          <input type="text" name="" disabled="true" placeholder="30/04/2016" value="<?= date("d/m/Y",strtotime($model->prescription)); ?>">                          
+                          <input type="text" name="" disabled="true" placeholder="30/04/2016" value="<?= date("d/m/Y",strtotime($datosFinancieros['prescription'])); ?>">                          
                         </fieldset>
                           <div class="clear"></div>
                         <div class="lineap"></div>
@@ -703,17 +752,17 @@
                         </div>
                         <fieldset class="large-4 medium-12 small-12 columns padding">
                           <label class="active">Juzgado</label>
-                          <input id="negotiation" type="text" name="" placeholder="" value="<?= $model->negotiation; ?>">
+                          <input id="negotiation" type="text" name="" placeholder="" value="<?= $datosFinancieros['negotiation']; ?>">
                           <label class="active">Estado</label>
-                          <input id="vendorEmail" type="text" name="" placeholder="" value="<?= $model->vendorEmail; ?>">
+                          <input id="vendorEmail" type="text" name="" placeholder="" value="<?= $datosFinancieros['vendorEmail']; ?>">
                         </fieldset>
                         <fieldset class="large-4 medium-12 small-12 columns padding">
                           <label class="active">Nombre del Abogado</label>
-                          <input id="vendorName" type="text" name="" placeholder="" value="<?= $model->vendorName; ?>">
+                          <input id="vendorName" type="text" name="" placeholder="" value="<?= $datosFinancieros['vendorName']; ?>">
                         </fieldset>
                         <fieldset class="large-4 medium-12 small-12 columns padding">
                           <label class="active">Referencia - Radicado</label>
-                          <input id="vendorPhone" type="text" name="" placeholder="" value="<?= $model->vendorPhone; ?>">                          
+                          <input id="vendorPhone" type="text" name="" placeholder="" value="<?= $datosFinancieros['vendorPhone']; ?>">                          
                         </fieldset>
                         <div class="clear"></div>
                         <div class="txt_right block padding">
@@ -725,7 +774,7 @@
                     <article id="historia_gestion" class="block">
                       <!--Datos acordeon-->
                       <?php 
-                        $managements = Management::model()->findAllByAttributes(array('idWallet'=>$model->idWallet), array('order'=>'fecha DESC'));
+                        $managements = Management::model()->findAllByAttributes(array('idWallet'=>$idWallet), array('order'=>'fecha DESC'));
                       ?>
                       <section class="padding">                                                
                         <ul class="collapsible acordeon_history" data-collapsible="accordion">
@@ -781,8 +830,7 @@
                             </li>
 
                               <?php
-
-                                }
+                              }
                               if($management->effect != null){                              
                           ?>
                             <li>
@@ -820,8 +868,8 @@
                               </div>
                             </li>
                           <?php
+                              }
                             }
-                          }
                           }
                           ?>
                         </ul>
@@ -843,13 +891,24 @@
         </section>
           <div class="clear"></div>
       </section>
-      <input type="hidden" id="idWallet" value="<?= $model->idWallet?>">
+      <input type="hidden" id="idWallet" value="<?= $idWallet?>">
       <?php
-        $idAdviser = Yii::app()->session['cojunal']->idAdviser;
+        // $idAdviser = Yii::app()->session['cojunal']->idAdviser;
       ?>
       <input type="hidden" id="idAdviser" value="<?= $idAdviser?>">
 
       <script type="text/javascript">
+
+        document.forms.updateTarea.addEventListener('submit', function(e) {
+          e.preventDefault();
+          if ($('#readignar_idAdviser').val() != '') {
+            if ($('textarea[name="log"]').val() != '') document.forms.updateTarea.submit();
+            else alert('Debe agregar un Registro de gestión');
+          }else {
+            document.forms.updateTarea.submit();
+          }
+        }, false);  
+        
         var seconds = 0;
         $(function(){
 
@@ -859,7 +918,7 @@
                 type: 'GET',
                 data : {
                   "idSupport" : $(this).val(),
-                  "wallet" : <?= $model->idWallet?>
+                  "wallet" : '<?= $idWallet?>'
                 },
                 dataType : "html",
                 success: function (data) {
@@ -1193,25 +1252,38 @@
           $("#timer").html(t);
         }
 
-        function tipoEstatusChange(tipo){
-          var idWallet  = $("#idWallet").val();
-          var status = $("#status").val();
+        function tipoEstatusChange(status, id){
+          console.log(status.value, id);
+          var url = '<?php echo Yii::app()->getBaseUrl(true); ?>'+'/wallet/updateStatus';
+          var config = { headers: { 'Content-Type': 'multipart/form-data' } };
+          var data = {idStatus:status.value, id: id};
+          $.post(url, data, function(success) {
+            console.log(success);
+          }, function(err) {
+            alert('Ha ocurrido un error al procesar tu solicitud.');
+          });
+          // axios.post(url, JSON.stringify(data), config).then(function(success) {
+          //   console.log(success);
+          // }).catch(function(err) {
+          //   alert('Ha ocurrido un error al procesar tu solicitud.');
+          // })
+          // var idWallet  = $("#idWallet").val();
+          // var status = $("#status").val();
 
-          //alert(status+'---'+idWallet);
+          // //alert(status+'---'+idWallet);
 
-            $.ajax({
-                url: '<?php echo Yii::app()->getBaseUrl(true); ?>'+'/wallet/tipoEstatus',
-                type: 'POST',
+          //   $.ajax({
+          //       type: 'POST',
                 
-                data:"idWallet="+idWallet+"&status="+status,
+          //       data:"idWallet="+idWallet+"&status="+status,
 
-                success: function (data) {
-                   location.reload(true); 
-                },
-                error: function(data){
-                  console.info(data);
-                }
-              });
+          //       success: function (data) {
+          //          location.reload(true); 
+          //       },
+          //       error: function(data){
+          //         console.info(data);
+          //       }
+          //     });
         }
 
       </script>

@@ -198,7 +198,7 @@ class AdminController extends AdminBaseController {
 
       $this->performAjaxValidation($model, 'advisers-form');
 
-      $model->setAttributes($_POST['Advisers']);
+      //$model->setAttributes($_POST['Advisers']);
       $modelAuthAssigment->userid = $model->idAuthAssignment;
       $model->email = $model->idAuthAssignment;
       unset($model->idAuthAssignment);
@@ -212,42 +212,49 @@ class AdminController extends AdminBaseController {
               $modelAuthAssigment->bizrule = "Coordinador";
               $modelAuthAssigment->data = "Rol Coordinador";
               $modelAuthAssigment->itemname = 'Coordinador';
+              $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
               break;
             // cordinador juridico
             case 'CJuridico':
               $modelAuthAssigment->bizrule = "Rol de coordinador jurídico";
               $modelAuthAssigment->data = "Rol de coordinador jurídico";
               $modelAuthAssigment->itemname = 'Coordinador jurídico';
+              $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
               break;
             // cordinador pre juridico
             case 'CPJuridico':
               $modelAuthAssigment->bizrule = "Rol de coordinador pre jurídico";
               $modelAuthAssigment->data = "Rol de coordinador pre jurídico";
               $modelAuthAssigment->itemname = 'Coordinador pre jurídico';
+              $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
               break;
             // asesor
             case 'A':
               $modelAuthAssigment->bizrule = "Rol asesor";
               $modelAuthAssigment->data = "Rol asesor";
               $modelAuthAssigment->itemname = 'Asesor';
+              $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
               break;
             // asesor juridico
             case 'AJuridico':
               $modelAuthAssigment->bizrule = "Rol de asesor jurídico";
               $modelAuthAssigment->data = "Rol de asesor jurídico";
               $modelAuthAssigment->itemname = 'Asesor jurídico';
+              $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
               break;
             // asesor pre juridico
             case 'APJuridico':
               $modelAuthAssigment->bizrule = "Rol de asesor pre jurídico";
               $modelAuthAssigment->data = "Rol de asesor pre jurídico";
               $modelAuthAssigment->itemname = 'Asesor pre jurídico';
+              $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
               break;
             // asesor
             default:
               $modelAuthAssigment->bizrule = "Rol asesor";
               $modelAuthAssigment->data = "Rol asesor";
               $modelAuthAssigment->itemname = 'Asesor';
+              $modelAuthAssigment->userid = $_POST['Advisers']['idAuthAssignment'];
               break;
           }
         }
@@ -259,17 +266,32 @@ class AdminController extends AdminBaseController {
         $model->monthlyGoal = 0;
         $hash = substr(md5($now), 0, 8);
         $model->passwd = md5($hash);
+        $model->parentAdviser = $_POST['Advisers']['parentAdviser'];        
+        $model->name = $_POST['Advisers']['name'];
+        $model->email = $_POST['Advisers']['idAuthAssignment'];
+        $model->status_idStatus = $_POST['Advisers']['status_idStatus'];
+        
+          
+        /**Advisers[name]:sasha
+Advisers[idAuthAssignment]:pepe@pp.com
+Advisers[weeklyGoal]:0
+Advisers[monthlyGoal]:0
+Advisers[status_idStatus]:2
+Advisers[parentAdviser]:83
+Advisers[perfil]:AJuridico */
+
 
         if(count(Advisers::model()->findByAttributes(array('email'=>$model->email))) > 0
           || count(AuthAssignment::model()->findByAttributes(array('userid'=>$modelAuthAssigment->userid))) > 0) {
             Yii::log("No se pudo crear el usuario. Ya existe el correo o el nombre de usuario en la base de datos" . $keyPermission, "error", "actionCreate");
             Yii::app()->user->setFlash("error", Yii::t('app', "No se pudo crear el usuario. Ya existe el correo o el nombre de usuario en la base de datos"));
+            $this->redirect(['usuarios', 'tab' => 'formulario']);
         }else{
-          if($newToken->save()){
+          if($newToken->save()){         
             if($modelAuthAssigment->save()){
-              $model->idAuthAssignment = $modelAuthAssigment->idAuthAssignment;
+              $model->idAuthAssignment = $modelAuthAssigment->idAuthAssignment;             
               if ($model->save()) {
-                echo('model save <br>');
+                //echo('model save <br>');
                 $mailSender = $this->sendMailAdvisers($keyPermission, $model->name, $model->email,$modelAuthAssigment->userid,$hash);
                 if (Yii::app()->getRequest()->getIsAjaxRequest()){
                   Yii::app()->end();
@@ -280,8 +302,9 @@ class AdminController extends AdminBaseController {
                 }
               }
             }else {
-              Yii::app()->user->setFlash("error", Yii::t('app', "El nombre del usuario ya se encuentra registrado"));
-              $this->redirect(array('usuarios'));
+              Yii::app()->user->setFlash("error", Yii::t('app', "El nombre del usuario ya se encuentra registrado"));            
+             // $this->redirect(array('usuarios'));
+             $this->redirect(['usuarios', 'tab' => 'formulario']);
             }
           }else{
             Yii::log("No se ha podido cargar el key para envio de correo " . $keyPermission, "error", "actionCreate");
@@ -398,6 +421,7 @@ class AdminController extends AdminBaseController {
         $model->dUpdate = $now;
         $hash = substr(md5($now), 0, 8);
         $model->passwd = md5($hash);
+        $model->passwd = $hash;
         $modelAdviser = Advisers::model()->findByPk($model->idAdviser);
         $modelAuthAssigment->userid = $model->contactEmail;
         $modelAuthAssigment->bizrule = "Rol empresa";
@@ -405,7 +429,7 @@ class AdminController extends AdminBaseController {
         $modelAuthAssigment->itemname = "Empresa";
         if(count(Advisers::model()->findByAttributes(array('email'=>$model->contactEmail)))>0 || count(AuthAssignment::model()->findByAttributes(array('userid'=>$modelAuthAssigment->userid)))>0){
 
-          if( $_POST['editar'] == 1){
+          if( isset($_POST['editar']) && $_POST['editar'] == 1){
             $Adviserbase->update_clientes();
             Yii::app()->user->setFlash("error", Yii::t('app', "Registro mofificado con éxito"));
 

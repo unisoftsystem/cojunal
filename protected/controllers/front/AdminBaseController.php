@@ -139,6 +139,22 @@ public function actionGetpagosrealizados() {
 	
 	$this->apiResponse($model::getpagosrealizadoscampa($_POST['id']));
 }
+
+
+public function actioncordprejuridicos()
+{
+	$data = [];
+/*	$currentPage = (isset($_GET['page']) ? $_GET['page'] : 1);
+
+	$model = new Campaigns;
+	$data['clientesList'] = $model::getClientsConfig(($currentPage - 1));
+	$data['clientesNames'] = $model::getClientsNames();
+	$data['totalRecords'] = $model::getClientsCount();
+	$data['totalRecords'] = $data['totalRecords'][0]['total'];*/
+
+	$this->layout = 'layout_dashboad_profile_coord_pre';
+	$this->render('../coordpre/listado' ,$data);
+}
 	
 
 }

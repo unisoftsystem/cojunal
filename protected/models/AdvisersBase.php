@@ -417,7 +417,7 @@ FROM
 }
 
 public function deudores_campanas_informe($idcampa){
-	$sql = "SELECT 
+	/*$sql = "SELECT 
 			wallets_tempo.accountNumber,
 			wallets_tempo.idCampaign,
 			wallets_tempo.legalName,
@@ -492,6 +492,87 @@ public function deudores_campanas_informe($idcampa){
 		FROM
 			wallets_tempo
 		WHERE
+		wallets_tempo.idCampaign = '{$idcampa}'";*/
+
+		$sql = "SELECT 
+		wallets_tempo.accountNumber,
+		wallets_tempo.idCampaign,
+		wallets_tempo.legalName,
+		wallets_tempo.id,
+		wallets_tempo.idNumber,
+		wallets_tempo.capitalValue,
+		wallets_tempo.address,
+		wallets_tempo.phone,
+		wallets_tempo.email,
+		wallets_tempo.ciudad,
+		wallets_tempo.idStatus,
+		wallets_tempo.product,
+		wallets_tempo.idAdviser,
+		wallets_tempo.validThrough,
+		wallets_tempo.migrate,
+		wallets_tempo.lote,
+		wallets_tempo.titleValue,
+		wallets_tempo.typePhone1,
+		wallets_tempo.countryPhone1,
+		wallets_tempo.cityPhone1,
+		wallets_tempo.phone1,
+		wallets_tempo.typePhone2,
+		wallets_tempo.countryPhone2,
+		wallets_tempo.cityPhone2,
+		wallets_tempo.phone2,
+		wallets_tempo.typePhone3,
+		wallets_tempo.countryPhone3,
+		wallets_tempo.cityPhone3,
+		wallets_tempo.phone3,
+		wallets_tempo.nameReference1,
+		wallets_tempo.relationshipReferenc1,
+		wallets_tempo.countryReference1,
+		wallets_tempo.cityReference1,
+		wallets_tempo.commentReference1,
+		wallets_tempo.nameReference2,
+		wallets_tempo.relationshipReference2,
+		wallets_tempo.countryReference2,
+		wallets_tempo.cityReference2,
+		wallets_tempo.commentReference2,
+		wallets_tempo.nameReference3,
+		wallets_tempo.relationshipReference3,
+		wallets_tempo.countryReference3,
+		wallets_tempo.cityReference3,
+		wallets_tempo.commentReference3,
+		wallets_tempo.nameEmail1,
+		wallets_tempo.email1,
+		wallets_tempo.nameEmail2,
+		wallets_tempo.email2,
+		wallets_tempo.nameEmail3,
+		wallets_tempo.email3,
+		wallets_tempo.typeAddress1,
+		wallets_tempo.address1,
+		wallets_tempo.countryAdrress1,
+		wallets_tempo.cityAddress1,
+		wallets_tempo.typeAddress2,
+		wallets_tempo.address2,
+		wallets_tempo.countryAddress2,
+		wallets_tempo.cityAddress2,
+		wallets_tempo.typeAddress3,
+		wallets_tempo.address3,
+		wallets_tempo.countryAddress3,
+		wallets_tempo.cityAddress3,
+		wallets_tempo.typeAsset1,
+		wallets_tempo.nameAsset1,
+		wallets_tempo.commentAsset1,
+		wallets_tempo.typeAsset2,
+		wallets_tempo.nameAsset2,
+		wallets_tempo.commentAsset2,
+		wallets_tempo.typeAsset3,
+		wallets_tempo.nameAsset3,
+		wallets_tempo.commentAsset3,
+		payments.value,
+		advisers.name AS asesor
+		FROM
+		  payments
+		  RIGHT OUTER JOIN wallets_tempo ON (payments.idWallet = wallets_tempo.id)
+		  LEFT OUTER JOIN advisers ON (payments.idAdviser = advisers.idAdviser)
+	  WHERE
 		wallets_tempo.idCampaign = '{$idcampa}'";
 			$listado = Yii::app()->db->createCommand($sql)->queryAll();
 			return $listado;	

@@ -21,81 +21,87 @@
                 }, function(resp2) {
                     //console.log(resp2[0])
                     _this['tot_ante_recaudado'] = resp2[0];
-                    tot = _this['tot_ante_recaudado']['total'];
+                    var tot = _this['tot_ante_recaudado']['total'];
                     //alert(tot)
-                });
-                // var tot = _this['tot_ante_recaudado'];
-                console.log(tot)
-                    /** */
-                console.log(' id campana ' + _this.id)
-                _this['campana'] = resp[0];
-                var recaudado = _this['campana']['monto_recuperado'];
-                var payments = _this['campana']['recaudado'];
 
-                var service = (_this['campana']['serviceType'] == 'SERVICIO 1') ?
-                    _this['campana']['valueService1'] :
-                    _this['campana']['valueService2'];
+                    console.log(tot + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 
-                var costo = parseFloat(_this['campana']['num_clientes']) * parseFloat(service);
-                var fee = (recaudado * _this['campana']['fee']);
-                var interests = (recaudado * _this['campana']['interests']);
-                var comisions = (recaudado * _this['campana']['comisions']);
-                var val_tot_recaudado = parseFloat(tot + payments);
+                    // var tot = _this['tot_ante_recaudado'];
+                    console.log(tot)
+                        /** */
+                    console.log(' id campana ' + _this.id)
+                    _this['campana'] = resp[0];
+                    var recaudado = _this['campana']['monto_recuperado'];
+                    var payments = _this['campana']['recaudado'];
 
-                var costo_campana = recaudado - (fee + interests + comisions);
-                console.log(fee, interests, comisions);
-                var total = _this['campana']['monto_total'];
+                    var service = (_this['campana']['serviceType'] == 'SERVICIO 1') ?
+                        _this['campana']['valueService1'] :
+                        _this['campana']['valueService2'];
 
-                var pendiente2 = parseFloat(100 * costo_campana / total).toFixed(2);
-                var recaudado2 = parseFloat(100 * parseFloat(recaudado) / _this['campana']['monto_total']).toFixed(2);
-                console.log('======================');
-                console.log(typeof costo_campana);
-                console.log(typeof recaudado);
-                console.log(total);
-                console.log(pendiente2);
-                console.log(recaudado2);
-                console.log('======================');
-                var ctx = document.getElementById("myChart");
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        //labels: ["Costo campaña", "Total recaudado"],
-                        datasets: [{
-                            // data: [costo_campana, recaudado, tot, payments],
-                            data: [total, val_tot_recaudado],
-                            backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
-                            borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)'],
-                            borderWidth: 1
-                        }],
-                        options: {
-                            scales: {
-                                xAxes: [{
+                    var costo = parseFloat(_this['campana']['num_clientes']) * parseFloat(service);
+                    var fee = (recaudado * _this['campana']['fee']);
+                    var interests = (recaudado * _this['campana']['interests']);
+                    var comisions = (recaudado * _this['campana']['comisions']);
+                    var val_tot_recaudado = parseFloat(tot + payments);
+
+                    var costo_campana = recaudado - (fee + interests + comisions);
+                    console.log(fee, interests, comisions);
+                    var total = _this['campana']['monto_total'];
+                    var gran_tot = parseFloat(payments) + parseFloat(tot);
+
+                    var pendiente2 = parseFloat(100 * costo_campana / total).toFixed(2);
+                    var recaudado2 = parseFloat(100 * parseFloat(gran_tot) / _this['campana']['monto_total']).toFixed(2);
+                    console.log('======================');
+                    console.log(typeof costo_campana);
+                    console.log(typeof recaudado);
+                    console.log(total + "monto total" + val_tot_recaudado + " recaudado");
+                    console.log(pendiente2);
+                    console.log(recaudado2);
+                    console.log('======================');
+                    var ctx = document.getElementById("myChart");
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            //labels: ["Costo campaña", "Total recaudado"],
+                            datasets: [{
+                                // data: [costo_campana, recaudado, tot, payments],
+                                data: [total, recaudado, tot],
+                                backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(59, 59, 59, 0.2)'],
+                                borderColor: ['rgba(0, 0, 0,1)', 'rgba(54, 162, 235, 0.2)', 'rgba(59, 59, 59, 0.2)'],
+                                borderColor: ['rgba(54, 162, 235,1)', 'rgba(54, 162, 235, 0.2)', 'rgba(59, 59, 59, 0.2)'],
+                                borderWidth: 1
+                            }],
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        display: false
+                                    }]
+                                },
+                                legend: {
                                     display: false
-                                }]
-                            },
-                            legend: {
-                                display: false
-                            },
-                            tooltips: {
-                                titleFontSize: 12
-                            },
-                            scaleFontSize: 20,
-                            responsive: true
+                                },
+                                tooltips: {
+                                    titleFontSize: 12
+                                },
+                                scaleFontSize: 20,
+                                responsive: true
+                            }
                         }
-                    }
+                    });
+                    _this['pendiente2'] = pendiente2 + ' %';
+                    _this['recaudado2'] = recaudado2 + ' %';
+                    _this['costo'] = costo;
+                    _this['recaudado'] = recaudado;
+                    _this['costo_campana'] = costo_campana;
+                    _this['val_payments'] = payments;
+                    _this['valores_anterior'] = tot;
+
+                    console.log(costo, _this['campana']['num_clientes'], service);
+
+
+                    console.log(resp);
                 });
-                _this['pendiente2'] = pendiente2 + ' %';
-                _this['recaudado2'] = recaudado2 + ' %';
-                _this['costo'] = costo;
-                _this['recaudado'] = recaudado;
-                _this['costo_campana'] = costo_campana;
-                _this['val_payments'] = payments;
-                _this['valores_anterior'] = tot;
-                console.log(tot + " anteriores");
-                console.log(costo, _this['campana']['num_clientes'], service);
 
-
-                console.log(resp);
             });
         },
         data: function() {

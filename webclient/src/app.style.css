@@ -1,0 +1,654 @@
+@import url('fonts/Avenir/style.css');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+body {
+  font-family: 'AvenirLTStd-Book';
+}
+input[type="text"]:focus {
+  outline: none;
+}
+/****************************************
+ * Modal css
+ ***************************************/
+.v--modal-box.v--modal {
+  top: 50% !important;
+  transform: translateY(-40%) translateX(-5%) !important;
+  // height: 400px !important;
+  right: 200px;
+  z-index: 1000000000;
+}
+/****************************************
+ * Input css
+ ***************************************/
+input, textarea {
+  -webkit-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  -webkit-appearance: none;
+  background: #fff;
+  border: none;
+  -webkit-border-radius: 2px;
+  display: block;
+  border-radius: 2px;
+  margin: 0 0 10px 0;
+  padding: 8px 12px 9px 12px;
+  border: 1px solid #d7d7d7;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  font-family: 'Avenir LT Std 45 Book';
+  font-size: 14px;
+  color: #a6a6a6;
+  width: 100%;
+  display: inline-block;
+  width: 100%;
+  max-width: 300px;
+}
+/****************************************
+ * Button css
+ ***************************************/
+button {
+  cursor: pointer;
+  border: none;
+  font: inherit;
+}
+.btn-link {
+  cursor: pointer;
+  background-color: transparent;
+  color: #039be5;
+}
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+    z-index: 1;
+    will-change: opacity,transform;
+    transition: all .3s ease-out;
+}
+.btn {
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Avenir LT Std 45 Book' !important;
+    letter-spacing: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    padding: 11px 26px;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -moz-transition: 0.4s;
+    transition: 0.4s;
+    overflow: hidden;
+    position: relative;
+    text-transform: uppercase;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    display: inline-block;
+    background: #09ca69;
+}
+.btn:hover {
+  background: #008d96;
+}
+.v--modal-box.v--modal {
+	overflow: auto;
+  height: auto;
+  width: 100% !important;
+	max-width: 950px !important;
+  /*font-family: 'Avenir LT Std 45 Book';*/
+  /*left: 50% !important;*/
+  /*transform: translateX(-50%) !important;*/
+	/*max-width: 1024px;*/
+  /*max-height: 600px;*/
+  /*left: 50%;*/
+  /*transform: translateX(-50%);*/
+}
+.col-6 {
+  float: left;
+  width: 50%;
+}
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: center;
+}
+.form-group input, .form-group label {
+  display: inline-flex;
+}
+.form-group label {
+  font-weight: bold;
+}
+.form-group input {
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  -webkit-appearance: none;
+  background: #fff;
+  border: none;
+  -webkit-border-radius: 2px;
+  display: block;
+  border-radius: 2px;
+  margin: 0 0 10px 0;
+  padding: 8px 12px 9px 12px;
+  border: 1px solid #d7d7d7;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  font-family: 'Avenir LT Std 45 Book';
+  font-size: 14px;
+  color: #a6a6a6;
+  width: 100%;
+  display: inline-block;
+  width: 100%;
+  max-width: 280px;
+}
+.btnb {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'montserrat_bold';
+  letter-spacing: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  padding: 11px 26px;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -moz-transition: 0.4s;
+  transition: 0.4s;
+  overflow: hidden;
+  position: relative;
+  text-transform: uppercase;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  display: inline-block;
+  background: #09ca69;
+}
+
+element.style {
+}
+cojunal.css:3552
+.formweb button {
+  cursor: pointer;
+}
+cojunal.css:3552
+.btnb {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'montserrat_bold';
+  letter-spacing: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  padding: 11px 26px;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -moz-transition: 0.4s;
+  transition: 0.4s;
+  overflow: hidden;
+  position: relative;
+  text-transform: uppercase;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  display: inline-block;
+  background: #09ca69;
+}
+.waves-effect {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  z-index: 1;
+  will-change: opacity,transform;
+  transition: all .3s ease-out;
+}
+button {
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  outline: none;
+  font-weight: bold;
+  font-family: 'Avenir LT Std 45 Book';
+}
+footer {
+background: #fff;
+height: auto;
+width: 100%;
+z-index: 9;
+position: fixed;
+padding-left: 20%;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 41px;
+}
+footer p {
+font-family:'Avenir LT Std 45 Book';
+font-size: 13px;
+margin: 13px 20px 10px;
+color: #5d5d5d;
+display: block;
+}
+footer p span {
+font-weight:bold;
+}
+
+.footer-autor {
+  display: inline-block;
+  vertical-align: top;
+  height: auto;
+  line-height: 20px;
+  margin: 12px 20px 0 0;
+  float: right;
+}
+.footer-autor a {
+font-family:'Avenir LT Std 45 Book';
+font-weight:bold;
+  font-size: 13px;
+  color: #5d5d5d;
+  text-decoration: none;
+}
+.container {
+  background-color: #f6f6f6;
+  height: 100vh;
+}
+.b-main-container {
+  display: flex;
+  flex-direction: row;
+}
+.b-sidebar-container {
+  max-width: 240px;
+  width: 100%;
+  float: left;
+}
+.b-data-container {
+  background-color: #f6f6f6;
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+.page {
+padding: 0px 20px;
+margin-top: 85px;
+}
+.header-title {
+  cursor: pointer;
+  color: #5d5d5d;
+  font-family:'Avenir LT Std 45 Book';
+  font-weight:bold;
+  font-size: 13px;
+  line-height: 13px;
+}
+i {
+  cursor: pointer;
+  color: #5d5d5d;
+}
+table {
+  width: 100%;
+  background-color: white;
+}
+tr {
+      border-bottom: 1px solid #e8e8e8;
+  transition: background-color .25s ease;
+}
+tr:hover {
+  background-color: #f2f2f2;
+}
+th, td {
+font-family:'Avenir LT Std 45 Book';
+padding: 15px 5px;
+color: #5d5d5d;
+font-size: 13px;
+display: table-cell;
+text-align: center !important;
+vertical-align: middle;
+border-radius: 2px;
+border-bottom: 1px solid #e8e8e8 !important;
+}
+input {
+  -webkit-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  -webkit-appearance: none;
+  background: #fff;
+  border: none;
+  -webkit-border-radius: 2px;
+  display: block;
+  border-radius: 2px;
+  margin: 0 0 10px 0;
+  padding: 8px 12px 9px 12px;
+  border: 1px solid #d7d7d7;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  font-family: Avenir LT Std 45 Book;
+  font-size: 14px;
+  color: #a6a6a6;
+  width: 100%;
+  display: inline-block;
+  width: 100%;
+  max-width: 280px;
+}
+input[type=text]:focus{
+border-bottom: 1px solid #09ca69;
+box-shadow: 0 1px 0 0 #09ca69;
+}
+.Header {
+  background-color: white;
+}
+.main {
+  background: #fff;
+  width: 100%;
+  left: 0;
+  height: auto;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -moz-transition: 0.4s;
+  transition: 0.4s;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.14), 0 1px 0 rgba(0,0,0,0.03);
+  box-shadow: 0 2px 2px rgba(0,0,0,0.14), 0 1px 0 rgba(0,0,0,0.03);
+  display: block;
+}
+.logo-container {
+  cursor: pointer;
+  display: block;
+  float: left;
+  height: 26px;
+  margin: 22px 19px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+  position: relative;
+}
+.logo-container img {
+  height: 100%;
+}
+.pagination {
+  overflow: hidden;
+  width: 100%;
+  background-color: white;
+}
+.pagination-container {
+  align-items: center;
+  padding: 20px 20px 0 20px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: flex;
+  justify-content: flex-end;
+}
+.page-indicator {
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  -webkit-appearance: none;
+  background: #fff;
+  border: none;
+  -webkit-border-radius: 2px;
+  display: block;
+  border-radius: 0px;
+  margin: 0 0 10px 0;
+  padding: 8px 12px 9px 12px;
+  border: 1px solid #d7d7d7;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 35px;
+  width: 35px;
+  font-family: 'Avenir LT Std 45 Book';
+  font-size: 14px;
+  color: #a6a6a6;
+  display: inline-block;
+  margin-right: 2px;
+}
+.active {
+  background-color: #134695;
+  color: white;
+}
+
+.profile {
+  padding: 16px;
+}
+.main-profile {
+  display: block;
+  padding: 22px 0;
+}
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  margin: 0 10px 0 0;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.profile-descripcion {
+  margin-left: 5px;
+  display: block;
+  padding: 0 20px;
+}
+.profile-name {
+font-family: 'Montserrat', sans-serif;
+letter-spacing: 0px;
+font-size: 17px;
+color: #fff;
+text-transform: none;
+margin: 0;
+padding: 10px 0 0;
+text-decoration: none;
+width: 100%;
+margin-left: 30px;
+  margin-bottom: 3px;
+  margin-top: 4px;
+}
+.profile-email {
+font-size: 12px;
+color: #9b9b9b;
+position: absolute;
+margin-top: 0px;
+    margin-left: 44px;
+}
+img {
+  /*width: 100%;*/
+}
+.search-container {
+  display: inline-flex;
+  align-items: baseline;
+}
+.search-container{
+  background-color: white;
+  padding: 20px 20px 0 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.search-container span {
+font-family:'Avenir LT Std 45 Book';
+font-weight:normal;
+font-size: 13px;
+line-height: 13px;
+color: #5d5d5d;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+padding: 0 0 0 4px;
+margin: 0 0 5px 0;
+display: block;
+}
+input {
+  -webkit-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  -webkit-appearance: none;
+  background: #fff;
+  border: none;
+  -webkit-border-radius: 2px;
+  display: block;
+  border-radius: 2px;
+  margin: 0 0 10px 0;
+  padding: 8px 12px 9px 12px;
+  border: 1px solid #d7d7d7;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  font-family: 'Avenir LT Std 45 Book';
+  font-size: 14px;
+  color: #a6a6a6;
+  width: 100%;
+  display: inline-block;
+  width: 100%;
+  max-width: 280px;
+}
+input[type=text]:focus{
+border-bottom: 1px solid #09ca69;
+box-shadow: 0 1px 0 0 #09ca69;
+}
+.select {
+}
+.select-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+select {
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: url(assets/flecha_select.png);
+  background-repeat: no-repeat;
+  background-position: center right 8px;
+  border: 1px solid #d7d7d7;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  display: block;
+  padding: 8px 33px 9px 10px;
+  color: #5d5d5d;
+  height: auto;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Avenir LT Std 45 Book';
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  margin: 0 0 10px;
+  display: flex;
+  width: 100%;
+  max-width: 300px;
+}
+.Sidebar {
+  background-color: #193153;
+  padding-bottom: 130px;
+  width: 240px;
+  position: fixed;
+  left: 0;
+  top: 70px;
+  margin: 0;
+  height: 100%;
+  z-index: 999;
+  overflow-y: auto;
+}
+.sidebar-items {
+  list-style: none;
+  padding: 0;
+
+}
+.sidebar-item {
+  border-bottom: 1px solid rgba(155, 155, 155, 0.45);
+  color: #9b9b9b;
+  padding: 0 20px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  font-family: 'AvenirLTStd-Book';
+}
+.sidebar-item a i {
+  cursor: pointer;
+  color: #9b9b9b !important;
+}
+.sidebar-item a:hover i {
+  color: #f5a623 !important;
+}
+
+.sidebar-item:hover {
+  border-left: 4px solid #f5a623;
+  background: #e5e5e5;
+  color: #6c6c6c;
+}
+.sidebar-item:hover a {
+  color: #6c6c6c;
+}
+.sidebar-item a {
+color: #9b9b9b;
+text-transform: uppercase;
+font-family: 'Avenir LT Std 45 Book';
+font-size: .9rem;
+position: relative;
+text-decoration: none;
+
+}
+.sidebar-item a i{
+  font-size: 1.4rem;
+  vertical-align: middle;
+  display: inline-block;
+  margin: 0 16px 0 13px;
+}
+.colpancollapse{
+  padding: 0px !important;
+  border-bottom: none !important;
+}
+
+.title-page{
+  background: #fff;
+color: #134695;
+font-family: 'montserrat_bold';
+letter-spacing: 0;
+font-size: 17px;
+padding: 15px;
+text-transform: uppercase;
+-webkit-border-radius: 4px 4px 0 0;
+border-radius: 4px 4px 0 0;
+margin: 0;
+}
